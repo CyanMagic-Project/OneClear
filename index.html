@@ -3,233 +3,491 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OneClear.C | Cyan Magic Project</title>
+    <title>OneClear.B | Cyan Magic Project</title>
     <style>
         :root {
-            --cyan-magic: #00B2B2;
-            --ice-cyan-bg: #F0F9FA;
-            --text-color: #222222;
-            --rune-soft: rgba(0, 178, 178, 0.25);
-            --signature-color: rgba(0, 150, 150, 0.12);
-            --whisper-bg: rgba(0, 178, 178, 0.08);
+            --cyan-magic: #00E5FF; /* Flutter側のメインシアンに同期 */
+            --cyan-text: #00A2B1;
+            --midnight-blue: #1a2f3b; 
+            --dark-space: #0b1116;    
+            --card-dark: #121b22;     
+            --text-light: #e2e8f0;    
+            --text-muted: #64748b;    
+            --border-line: rgba(0, 229, 255, 0.15);
+            --whisper-bg: rgba(0, 229, 255, 0.02); 
+            
+            /* 結晶プリセットカラー */
+            --color-core: #00E5FF;
+            --color-resonance: #00FF7F;
+            --color-midnight: #BF00FF;
+            --color-prism-white: #F8F9FA; 
         }
         
         body {
-            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', sans-serif;
-            background-color: var(--ice-cyan-bg);
-            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--dark-space);
+            color: var(--text-light);
             margin: 0; padding: 0;
             line-height: 1.8;
             -webkit-font-smoothing: antialiased;
         }
 
-        .container { max-width: 850px; margin: 0 auto; padding: 40px 20px; }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; box-sizing: border-box; }
 
-        .main-header { position: relative; width: 100%; background-color: #FFFFFF; line-height: 0; }
+        /* ヘッダー */
+        .main-header { position: relative; width: 100%; background-color: var(--dark-space); line-height: 0; }
         .header-image { width: 100%; height: auto; display: block; }
         .header-signature {
-            position: absolute; bottom: 15px; right: 25px;
-            font-family: serif; font-size: 0.65rem; color: var(--signature-color);
+            position: absolute; bottom: 20px; right: 25px;
+            font-family: serif; font-size: 0.65rem; color: rgba(0, 229, 255, 0.15);
             letter-spacing: 5px; pointer-events: none; user-select: none;
         }
 
-        .main-catch {
-            font-size: 3.5rem; 
-            font-weight: 900; color: var(--text-color);
-            line-height: 1.2; margin: 80px 0 100px 0; letter-spacing: -2px;
-            border-left: 15px solid var(--cyan-magic); padding-left: 30px;
-        }
-        .main-catch span { color: var(--cyan-magic); display: block; margin-top: 15px; font-size: 4rem; }
-
-        .concept-card {
-            background: #FFFFFF; padding: 55px; border-top: 5px solid var(--cyan-magic);
-            margin-bottom: 100px; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04);
-        }
-        .concept-card h2 { color: var(--cyan-magic); font-size: 1.8rem; margin-top: 0; font-weight: 800; }
-        .highlight-text { font-size: 1.4rem; font-weight: 800; color: var(--text-color); display: block; margin-bottom: 15px; }
-
-        .magic-call-container { text-align: center; margin: 140px 0 100px; }
-        .magic-call {
-            font-size: 2.8rem; font-weight: 900; color: var(--cyan-magic);
-            display: block; margin-bottom: 35px; letter-spacing: 4px;
-        }
-        .magic-invite { font-size: 1.5rem; font-weight: 600; color: #555; display: block; line-height: 1.8; }
-
-        .luan-whisper {
-            background: var(--whisper-bg);
-            border: 1px dashed var(--cyan-magic);
+        /* 誘導バナー */
+        .android-teaser {
+            background: var(--card-dark); 
+            border: 1px solid rgba(0, 229, 255, 0.1); 
             border-radius: 12px;
-            padding: 20px 25px;
-            margin: 25px 0 10px 0;
-            font-size: 0.95rem;
-            line-height: 1.7;
-            color: #007a7a;
-            font-style: italic;
-            position: relative;
+            padding: 18px 24px; margin: 20px 0 0 0; 
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
-        .luan-whisper::before {
-            content: "◤ LUAN'S ANALYTICS ◢";
-            display: block;
-            font-size: 0.7rem;
-            font-weight: 900;
-            letter-spacing: 2px;
-            margin-bottom: 12px;
-            color: var(--cyan-magic);
+        .android-teaser-text { font-size: 0.88rem; font-weight: 600; color: #94a3b8; }
+        .android-teaser-text span { color: var(--cyan-magic); font-weight: 700; }
+        .android-link-btn {
+            background: var(--cyan-magic); color: #0b1116; text-decoration: none;
+            font-size: 0.8rem; font-weight: 800; padding: 8px 18px; border-radius: 6px; transition: all 0.3s ease;
         }
+        .android-link-btn:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 0 12px var(--cyan-magic); }
 
+        /* メインキャッチ */
+        .main-catch {
+            font-size: 3.2rem; font-weight: 900; color: #ffffff;
+            line-height: 1.3; margin: 90px 0; letter-spacing: -1px;
+            border-left: 8px solid var(--cyan-magic); padding-left: 25px;
+        }
+        .main-catch span { 
+            color: var(--cyan-magic); display: block; margin-top: 12px; font-size: 3.5rem; 
+            text-shadow: 0 0 30px rgba(0, 229, 255, 0.4);
+        }
+        .main-catch .sub-version { font-size: 1.1rem; font-weight: 700; color: var(--text-muted); letter-spacing: 3px; display: block; margin-bottom: 5px; }
+
+        /* コンセプトカード */
+        .concept-card {
+            background: var(--card-dark); padding: 50px; border-top: 4px solid var(--cyan-magic);
+            margin-bottom: 40px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-radius: 0 0 12px 12px;
+        }
+        .concept-card h2 { color: #ffffff; font-size: 1.5rem; margin-top: 0; font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 15px; letter-spacing: 1px; }
+        .concept-title { display: block; font-size: 1.6rem; font-weight: 900; color: var(--cyan-magic); line-height: 1.4; letter-spacing: 0.5px; }
+
+        /* Tipsセクションスタイル */
+        .tips-section {
+            background: var(--card-dark); padding: 45px 40px; border-radius: 12px;
+            margin-bottom: 80px; border: 1px solid rgba(0, 229, 255, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+        .tips-section h2 { color: #ffffff; font-size: 1.4rem; margin-top: 0; font-weight: 800; margin-bottom: 25px; display: flex; align-items: center; gap: 8px; }
+        .tips-list { list-style: none; padding: 0; margin: 0 0 25px 0; display: flex; flex-direction: column; gap: 20px; }
+        .tips-item-title { font-weight: 700; font-size: 1.05rem; color: var(--cyan-magic); margin-bottom: 4px; display: block; }
+        .tips-item-text { font-size: 0.92rem; color: #cbd5e1; margin: 0; line-height: 1.7; }
+        .tips-item-text strong { color: #ffffff; background: rgba(0, 229, 255, 0.15); padding: 1px 4px; border-radius: 3px; }
+        .tips-note { font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; margin: 0; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; }
+
+        /* 音響リードコピー */
+        .audio-statement { text-align: center; margin: 100px 0; }
+        .audio-statement .statement-main { font-size: 2.2rem; font-weight: 900; color: #ffffff; letter-spacing: 2px; display: block; margin-bottom: 15px; }
+        .audio-statement .statement-sub { font-size: 1.1rem; color: #94a3b8; font-weight: 500; display: block; }
+
+        /* ストーリーセクション */
         .story-section {
-            background: #FFFFFF; padding: 60px 240px 60px 60px;
-            margin-bottom: 120px; position: relative; border-radius: 12px;
+            background: var(--card-dark); padding: 45px 40px;
+            margin-bottom: 100px; border-radius: 12px;
+            border-left: 4px solid var(--cyan-magic);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            display: flex; flex-direction: column; gap: 35px;
+            align-items: center; text-align: center;
         }
-        .luan-asset { position: absolute; z-index: 5; filter: drop-shadow(0 0 15px rgba(0, 178, 178, 0.4)); pointer-events: none; }
-        .luan-story-img { width: 240px; right: -30px; bottom: -30px; }
-        .luan-speech { 
-            font-family: 'Hiragino Mincho ProN', serif;
-            color: #333; font-size: 1.4rem; line-height: 2.1; 
-            margin: 25px 0; border-left: 5px solid var(--cyan-magic); padding-left: 25px; 
-            font-weight: 600;
+        @media (min-width: 640px) {
+            .story-section { flex-direction: row; text-align: left; align-items: center; justify-content: space-between; }
+        }
+        .story-content { flex: 1; min-width: 0; }
+        .story-title { font-size: 1.35rem; margin-top: 0; margin-bottom: 12px; font-weight: 800; color: #ffffff; letter-spacing: 1px; }
+        .story-text { font-size: 0.92rem; color: #cbd5e1; margin-bottom: 0; line-height: 1.8; }
+        
+        /* キャラクターエリア */
+        .character-aside {
+            display: flex; flex-direction: column; gap: 15px; width: 220px; flex-shrink: 0; align-items: center;
+        }
+        .blanc-visual {
+            width: 120px; height: 120px; object-fit: cover; object-position: center;
+            border-radius: 50%;
+            border: 2px solid rgba(0, 229, 255, 0.3);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+        }
+        .blanc-technical-note {
+            width: 100%; background: rgba(0, 229, 255, 0.02); box-sizing: border-box;
+            border: 1px dashed rgba(0, 229, 255, 0.25); border-radius: 8px; padding: 14px;
+        }
+        .blanc-technical-note p { font-size: 0.85rem; line-height: 1.6; color: #a1b0cb; margin: 0; font-style: italic; text-align: center; }
+
+        /* プリセットグリッド */
+        .preset-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 120px; }
+        .preset-item { 
+            background: var(--card-dark); padding: 40px; border-radius: 12px; 
+            border: 1px solid var(--border-line);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            display: flex; flex-direction: column; justify-content: space-between;
+            position: relative; overflow: hidden;
+        }
+        .preset-header { margin-bottom: 20px; }
+        .preset-name { font-size: 1.35rem; font-weight: 900; color: var(--color-core); display: block; line-height: 1.2; letter-spacing: 1px; }
+        .kana-name { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); display: block; margin-top: 5px; letter-spacing: 1px; }
+        
+        /* バッジ自体のスタイル定義（下部に安全なマージンを確保） */
+        .badge { font-size: 0.65rem; padding: 3px 10px; border-radius: 4px; font-weight: 800; letter-spacing: 1px; display: inline-block; margin-top: 12px; margin-bottom: 15px; }
+        .badge.core { background: rgba(0, 229, 255, 0.1); color: var(--color-core); border: 1px solid rgba(0, 229, 255, 0.3); }
+        .badge.resonance { background: rgba(0, 255, 127, 0.08); color: var(--color-resonance); border: 1px solid rgba(0, 255, 127, 0.3); }
+        .badge.midnight { background: rgba(191, 0, 255, 0.1); color: var(--color-midnight); border: 1px solid rgba(191, 0, 255, 0.3); }
+        .badge.prism-white { background: rgba(255, 255, 255, 0.08); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.4); text-shadow: 0 0 4px rgba(255,255,255,0.5); }
+
+        /* キャッチコピー（見出し）共通定義：不自然なマージンをリセット */
+        .highlight-text { font-size: 1.1rem; font-weight: 700; color: var(--cyan-magic); display: block; margin: 0 0 8px 0; line-height: 1.4; }
+        .preset-body p { font-size: 0.9rem; color: #cbd5e1; margin: 0 0 22px 0; line-height: 1.75; }
+        
+        /* ミッドナイト用のタグ調整 */
+        .preset-item.midnight-item .character-tag { font-size: 0.78rem; font-weight: 700; color: #94a3b8; display: block; margin-bottom: 16px; opacity: 0.85; }
+
+        .pillar-list { list-style: none; padding: 0; margin: 0; }
+        .pillar-list li { font-weight: 600; font-size: 0.85rem; color: #94a3b8; line-height: 1.6; margin-bottom: 8px; }
+        .pillar-list strong { color: var(--color-core); font-weight: 700; margin-right: 6px; }
+        
+        /* プリセット固有トーン */
+        .preset-item.resonance-item { border-color: rgba(0, 255, 127, 0.2); }
+        .preset-item.resonance-item .preset-name { color: var(--color-resonance); }
+        .preset-item.resonance-item .pillar-list strong { color: var(--color-resonance); }
+        
+        .preset-item.midnight-item { border-color: rgba(191, 0, 255, 0.25); background: linear-gradient(145deg, #121b22 0%, #151226 100%); }
+        .preset-item.midnight-item .preset-name { color: var(--color-midnight); text-shadow: 0 0 15px rgba(191, 0, 255, 0.4); }
+        .preset-item.midnight-item .pillar-list strong { color: var(--color-midnight); }
+
+        /* 💡 プリズムホワイト（#F8F9FA）と微発光＆影をガチガチに適用 */
+        .preset-item.clear-item { border-color: rgba(255, 255, 255, 0.25); background: linear-gradient(145deg, #121b22 0%, #202428 100%); }
+        .preset-item.clear-item .preset-name { color: var(--color-prism-white); text-shadow: 0 0 15px rgba(255,255,255,0.6), 0 0 4px var(--cyan-magic); }
+        
+        /* 💡 CRYSTAL CLEAR 縦余白の徹底デトックス */
+        .preset-item.clear-item .badge.prism-white {
+            margin-bottom: 24px;   /* バッジと「極限の解像度」の間を適正なゆとり(24px)に固定 */
+        }
+        .preset-item.clear-item .highlight-text {
+            margin-top: 0 !important;
+            margin-bottom: 12px;   /* 「極限の解像度」と「淀みのない〜」を自然に繋ぎつつ引き締める */
+        }
+        .preset-item.clear-item .preset-body p {
+            margin-top: 15px;     /* 見出しと説明文の間の空白 */
+            margin-bottom: 20px;  /* 説明文と箇条書きの間の空白をスマートに調整 */
+        }
+        .preset-item.clear-item .pillar-list {
+            margin-top: 0 !important; /* ブラウザ標準のulの上マージンを完全抹殺 */
+        }
+        .preset-item.clear-item .pillar-list strong { 
+            color: var(--color-prism-white) !important; 
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.5), 1px 1px 2px #000000 !important; 
         }
 
-        .preset-grid { display: grid; grid-template-columns: 1fr; gap: 100px; }
-        .preset-item { background: #FFFFFF; padding: 55px; border-radius: 8px; border: 1px solid #eee; position: relative; }
-        .item-core { padding-left: 180px; }
-        .luan-core-img { width: 170px; left: -40px; bottom: 20px; }
-        .item-aura { padding-right: 180px; }
-        .luan-aura-img { width: 180px; right: -40px; bottom: -20px; }
-
-        .preset-name { display: block; font-size: 2rem; font-weight: 900; color: var(--cyan-magic); margin-bottom: 15px; }
-        .kana-name { font-size: 1rem; font-weight: 600; color: #888; margin-left: 10px; vertical-align: middle; }
-        .badge { background: var(--cyan-magic); color: #fff; font-size: 0.8rem; padding: 5px 15px; border-radius: 4px; vertical-align: middle; margin-left: 10px; }
-
-        .pillar-list {
-            list-style: none; padding: 25px; margin: 25px 0;
-            background: rgba(0, 178, 178, 0.03); border-left: 6px solid var(--cyan-magic);
-        }
-        .pillar-list li { margin-bottom: 12px; font-weight: 700; font-size: 1.1rem; }
-        .pillar-list strong { color: var(--cyan-magic); margin-right: 10px; font-size: 1.2rem; }
-
-        .roadmap-section {
-            text-align: center; margin: 120px 0; padding: 80px 40px;
-            background: #FFFFFF; border: 3px dashed var(--cyan-magic); border-radius: 16px;
-            display: flex; flex-direction: column; align-items: center;
+        .premium-ribbon {
+            position: absolute; top: 15px; right: -30px; background: rgba(255,255,255,0.08);
+            color: #fff; font-size: 0.6rem; font-weight: 800; padding: 4px 30px;
+            transform: rotate(45deg); letter-spacing: 1.5px; border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        footer { text-align: center; padding: 100px 20px; border-top: 1px solid #eee; background: #fff; }
+        /* コンタクト */
+        .contact-section { text-align: center; margin-bottom: 80px; padding-top: 60px; border-top: 1px solid rgba(255,255,255,0.05); }
+        .contact-section h2 { font-family: serif; color: #ffffff; font-size: 2.2rem; letter-spacing: 2px; margin-top: 0; }
+        .contact-link { color: var(--cyan-magic); font-size: 1.4rem; font-weight: 700; text-decoration: none; border-bottom: 1px solid var(--cyan-magic); padding-bottom: 3px; transition: opacity 0.2s; }
+        .contact-link:hover { opacity: 0.8; }
 
-        @media (max-width: 750px) {
-            .main-catch { font-size: 2.5rem; padding-left: 20px; }
-            .main-catch span { font-size: 2.8rem; }
-            .magic-call { font-size: 2rem; }
-            .story-section, .item-core, .item-aura { padding: 40px 20px !important; text-align: center; }
-            .luan-asset { position: static; display: block; margin: 0 auto 20px; width: 140px; height: auto; opacity: 1 !important; filter: none !important; }
-            .kana-name { display: block; margin: 5px 0; }
+        /* 最下部のご利用上の注意セクション */
+        .attention-section {
+            margin-bottom: 100px;
+            padding-top: 40px;
+            border-top: 1px dashed rgba(0, 229, 255, 0.1);
+        }
+        .attention-box {
+            background: rgba(18, 27, 34, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 25px 30px;
+            text-align: left;
+        }
+        .attention-box h3 {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .attention-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .attention-box li {
+            font-size: 0.82rem;
+            color: #8193a2;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+        .attention-box li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* フッターまわり */
+        footer { 
+            text-align: center; 
+            padding: 60px 20px 140px 20px; 
+            border-top: 1px solid rgba(0, 229, 255, 0.08); 
+            background: var(--dark-space); 
+        }
+        .footer-logo { 
+            width: 240px; 
+            height: auto; 
+            margin: 0 auto 30px auto; 
+            display: block;
+            filter: drop-shadow(0 4px 15px rgba(0, 229, 255, 0.15));
+        }
+        .footer-copy { 
+            font-weight: 700; 
+            color: #ffffff; 
+            font-size: 0.95rem; 
+            letter-spacing: 0.5px; 
+            margin-bottom: 15px;
+        }
+        .footer-links { 
+            margin: 18px 0; 
+            display: flex; 
+            justify-content: center; 
+            gap: 25px; 
+            font-size: 0.85rem; 
+            font-weight: 500;
+        }
+        .footer-links a { 
+            color: rgba(0, 229, 255, 0.65); 
+            text-decoration: none; 
+            transition: color 0.2s ease, text-shadow 0.2s ease;
+            letter-spacing: 0.5px;
+        }
+        .footer-links a:hover { 
+            color: var(--cyan-magic); 
+            text-shadow: 0 0 8px rgba(0, 229, 255, 0.6);
+        }
+        .footer-links span {
+            color: rgba(255, 255, 255, 0.15);
+        }
+        .footer-brand { 
+            color: #627d98; 
+            font-size: 0.78rem; 
+            margin-top: 35px; 
+            letter-spacing: 1px;
+            font-weight: 500;
+            display: block;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .container { padding: 20px 15px; }
+            .main-catch { font-size: 2.2rem; margin: 60px 0; padding-left: 15px; }
+            .main-catch span { font-size: 2.4rem; }
+            .concept-card { padding: 30px; margin-bottom: 40px; }
+            .concept-title { font-size: 1.25rem !important; }
+            .tips-section { padding: 30px 20px; margin-bottom: 60px; }
+            .audio-statement { margin: 80px 0; }
+            .audio-statement .statement-main { font-size: 1.6rem; }
+            .audio-statement .statement-sub { font-size: 1rem; }
+            .story-section { padding: 30px 20px; gap: 25px; margin-bottom: 80px; }
+            .character-aside { width: 100%; }
+            .preset-grid { grid-template-columns: 1fr; gap: 30px; margin-bottom: 80px; }
+            .preset-item { padding: 30px; }
+            .android-teaser { flex-direction: column; gap: 12px; text-align: center; padding: 15px; }
+            .footer-logo { width: 180px; } 
         }
     </style>
 </head>
 <body>
 
     <header class="main-header">
-        <img src="OneClear.C HPHD.jpg" alt="OneClear.C" class="header-image">
+        <img src="OneClear.B HPHD.png" alt="OneClear.B (iOS) - Premium Interface" class="header-image">
         <div class="header-signature">ᚣᛟᛋᚻIᚳᚫᚹᚫ ᛏᚫᛏᛋᚢᚣᚫ</div>
     </header>
 
     <div class="container">
         
+        <div class="android-teaser">
+            <div class="android-teaser-text">Androidスマートフォンをお使いですか？ <span>OneClear.C ページはこちら</span></div>
+            <a href="android.html" class="android-link-btn">Android版を見る</a>
+        </div>
+        
         <h1 class="main-catch">
-            スマートフォンでの録音が<br>
-            <span>プロスタジオに。</span>
+            <span class="sub-version">OneClear.B — The Best Edition for iOS</span>
+            ワンタップで音をクリアに<br>
+            <span>シアンマジックサウンド</span>
         </h1>
 
         <section class="concept-card">
-            <h2>The Logic: Optimization for Creators</h2>
-            <span class="highlight-text">「音楽の録音、音楽配信などを行うすべての方へ。あなたのスマートフォンが、プロスタジオに」</span>
-            <p>OneClear.Cは、既存のアプリのような画一的な補正ではなく、プロの現場で用いられる<strong>『ステレオ・マスタリング』</strong>をモバイル向けに独自最適化。<strong>使用するデバイスそれぞれの特性に合わせて最適かつ最大限の音質パフォーマンスを引き出します。</strong></p>
-            <p>すべては「シアンマジック」が導く、次世代のオーディオ体験のために。</p>
+            <h2>One-Tap Optimization & シアンマジックサウンド</h2>
+            <div style="margin-bottom: 30px;">
+                <span class="concept-title">
+                    【シアンマジックサウンド】Crystalize your sound<br>上品な密度感、クリスタルの輝き
+                </span>
+            </div>
+            <p>録音ボタンを押したあと、理想の響きを探すために何時間もミキシングプラグインを調整する必要はありません。OneClear.Bが提示するのは、一発撮りの緊張感さえも味方につけ、迷わず<strong>『ワンタップで音を磨き上げる』</strong>という極上の研磨体験です。</p>
+            <p>その磨き上げられた先に定着するのが、独自の調律思想である<strong>『シアンマジックサウンド』</strong>。不要な残響や濁りを排したソリッドな<strong>『上品な密度感、クリスタルの輝き』</strong>をあなたの音に宿らせます。最先端のオーディオエンジンが、あなたの音に眠る純粋な輪郭だけを削り出し、耳元へダイレクトに届く存在感を掌の中に結晶化させます。</p>
         </section>
 
-        <div class="magic-call-container">
-            <span class="magic-call">その1音に、シアンマジック<br>シアンクリスタルの輝きを</span>
-            <span class="magic-invite">あなたのスマートフォンに、<br>音楽が大好きで、少し不思議な魔法使いを住まわせてみませんか？</span>
+        <!-- Tipsセクション -->
+        <section class="tips-section">
+            <h2>💡 OneClearのポテンシャルを最大限に引き出すコツ</h2>
+            <p style="font-size: 0.95rem; color: #94a3b8; margin: 0 0 25px 0;">『OneClear』の鮮やかな音声処理（シアンマジックサウンド）をより効果的に実感していただくための、おすすめの録音方法です。</p>
+            
+            <ul class="tips-list">
+                <li>
+                    <span class="tips-item-title">● マイクとの距離は適切に</span>
+                    <p class="tips-item-text">話者と内蔵マイクの距離が遠すぎると、音声処理の効果が感じにくくなることがあります。スマホを適切な位置に保って録音していただくのがベストです。</p>
+                </li>
+                <li>
+                    <span class="tips-item-title">● 静かな環境での録音がベース</span>
+                    <p class="tips-item-text">本アプリは高度な音声補正・加工を行いますが、極端な騒音や部屋の強い反響など、録音環境そのものを完全にゼロに補正するものではありません。できるだけ静かな空間で録音していただくと、驚くほどクリアな結果が得られます。</p>
+                </li>
+                <li>
+                    <span class="tips-item-title">● 身近な有線イヤホンを活用しよう（弾き語りにもおすすめ！）</span>
+                    <p class="tips-item-text">スマートフォン単体での録音はもちろん、<strong>お手持ちの有線イヤホンマイクを接続して録音するのもおすすめです。弾き語りの際にも歌声と楽器のバランスが綺麗に整いやすくなります</strong>ので、いつものスマホ環境でぜひお気軽に試してみてください。</p>
+                </li>
+            </ul>
+            
+            <p class="tips-note">※ご利用の機種やOSのバージョン、ハードウェアの仕様によって、動作や最終的な録音品質が異なる場合があります。</p>
+        </section>
+
+        <div class="audio-statement">
+            <span class="statement-main">あなたの声に、シアンマジック</span>
+            <span class="statement-sub">あなたの声はどの結晶で輝きますか？<br>磨き抜かれたソリッドな高密度サウンドが、ここから始まります。</span>
         </div>
 
         <div class="story-section">
-            <img src="luan1.png" class="luan-asset luan-story-img" alt="Luan">
-            <h2 class="story-title">Cyan Magic by Luan</h2>
-            
-            <div class="luan-speech">
-                「はじめまして。ボクはルアン。音の中に眠る<strong>『純粋なる結晶（コア）』</strong>を愛しているんだ。ボクの魔法をひと振りすれば、君の歌声はクリスタルのように透き通り、輝き出すはずさ。」
+            <div class="story-content">
+                <h2 class="story-title">The Sound Identity — Blanc</h2>
+                <p class="story-text">
+                    OneClear.Bのオリジナルキャラクターブラン。「シアンマジック」を操るもう一人の魔法使い。<br>
+                    不要な残響や音声の濁りをデトックス。録音されたままの原音が持つポテンシャルを極上のクリア空間へと引き上げます。
+                </p>
             </div>
-            <p>OneClear.Cの深淵に潜む音の守護者・ルアン。ルアンが操るシアンマジックで、あなたの声にクリスタルの輝きを作り出します。</p>
-
-            <div class="luan-whisper">
-                「ふふ……ボクの『シアンマジック』の恩恵を受けられるなんて、君は運がいいね。この術式を展開すれば、世界を覆うノイズの霧は晴れ、真実の響きが顕現するのさ。」
+            
+            <div class="character-aside">
+                <img src="Blanc.png" alt="Blanc - Sound Identity" class="blanc-visual">
+                <div class="blanc-technical-note">
+                    <p>「残響成分が欲しいって？…<br>なんとかしてみようか…」</p>
+                </div>
             </div>
         </div>
 
+        <!-- プリセットグリッド開始 -->
         <div class="preset-grid">
-            <div class="preset-item item-core">
-                <img src="luan2.png" class="luan-asset luan-core-img" alt="Luan Core">
-                <span class="preset-name">Crystal Core <span class="kana-name">（クリスタル・コア）</span><span class="badge">Standard</span></span>
-                
-                <div class="description-body">
-                    <span class="highlight-text">歌声を鮮明に強調し、芯のある「乾いた音」を届ける。</span>
-                    <p>OneClear.Cの核となるプリセット。<strong>ボーカルの輪郭を際立たせ、歌声を一歩前へと押し出す</strong>サウンドデザインが最大の特徴です。</p>
-                    <p>左右の音響空間を再構築しながらも、中心にある「声」のエネルギーを逃がしません。解像度が高く、ソリッドで乾いた質感を好む方や、自分の声をストレートに響かせたい方に最適です。</p>
-                    <ul class="pillar-list">
-                        <li><strong>歌声の強調:</strong> ボーカル帯域を緻密にコントロールし、圧倒的な存在感を。</li>
-                        <li><strong>空間デザイン:</strong> ステレオマスタリングによる立体的ワイド感。</li>
-                        <li><strong>性能の極限抽出:</strong> 各デバイスに合わせた最適化で負担を抑え、品質を最大化。</li>
-                    </ul>
+            
+            <div class="preset-item">
+                <div class="preset-header">
+                    <span class="preset-name">CRYSTAL CORE</span>
+                    <span class="kana-name">クリスタルコア</span>
+                    <span class="badge core">STANDARD ARCHITECTURE</span>
                 </div>
-
-                <div class="luan-whisper">
-                    「ただのステレオだと思ったかい？ ボクが君の歌声をクリスタルのように研ぎ澄ましておいたよ。このソリッドで芯のある響き……君の声が世界に真っ直ぐ届く魔法さ。ボクの緻密な計算のおかげだね。感謝してよね！」
+                <div class="preset-body">
+                    <span class="highlight-text">純粋な芯を保つ<br>すべての響きの原点</span>
+                    <p>OneClearシリーズの根幹を成す基本アルゴリズム。音全体の輪郭をカチッと引き締め、多様なレコーディング環境において、歪みのない真っ直ぐでクリーンな芯をサウンドへと定着させます。</p>
+                    <ul class="pillar-list">
+                        <li><strong>[Dry Base]</strong> 濁った低音の膨らみをスマートに抑制し、声の明瞭度を自然に向上。</li>
+                        <li><strong>[Filter Process]</strong> 歪みを抑え、原音に忠実なデトックス処理.</li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="preset-item item-aura">
-                <img src="luan3.png" class="luan-asset luan-aura-img" alt="Luan Aura">
-                <span class="preset-name">Crystal Aura <span class="kana-name">（クリスタル・オーラ）</span><span class="badge" style="background:#333">Premium</span></span>
+            <div class="preset-item resonance-item">
+                <div class="preset-header">
+                    <span class="preset-name">CRYSTAL RESONANCE</span>
+                    <span class="kana-name">クリスタルレゾナンス</span>
+                    <span class="badge resonance">HIGH RESOLUTION</span>
+                </div>
+                <div class="preset-body">
+                    <span class="highlight-text">中高音の際立ち<br>輝くような解像感</span>
+                    <p>高音域に繊浅で上品な共鳴（レゾナンス）をもたらす高域特化システム。籠もり気味の音声であっても、タップ一つで空気感を明るく変え、オケに埋もれない伸びやかな存在感を与えます。</p>
+                    <ul class="pillar-list">
+                        <li><strong>[Overtone Process]</strong> 不快なトゲを残さず、中高音の解像度とヌケの良さだけをピン留め。</li>
+                        <li><strong>[Acoustic Tail]</strong> 特有の煌びやかな高域補正をインテリジェントに付与.</li>
+                    </ul>
+                </div>
+            </div>
 
-                <div class="description-body">
-                    <span class="highlight-text">「その声は、あなたを優しく包み込む『聖域（オーラ）』へ。」</span>
-                    <p>ソリッドなCrystal Coreに対し、<strong>Auraは豊潤な「ウェット感」と「包容力」を追求しました。</strong>質感は違えどOneClearらしいサウンドを是非お試し下さい。</p>
-                    <p>シアンマジック独自の音響アルゴリズムが、シルクのように滑らかで潤いのある響きを生成。優しさの中に、揺るぎない力強さを秘めた、没入感溢れる音響体験を提供します。</p>
+            <div class="preset-item midnight-item">
+                <div class="premium-ribbon">PREMIUM</div>
+                <div class="preset-header">
+                    <span class="preset-name">CRYSTAL MIDNIGHT</span>
+                    <span class="kana-name">クリスタルミッドナイト</span>
+                    <span class="badge midnight">iOS ONLY / BLANC'S MAGIC</span>
+                </div>
+                <div class="preset-body">
+                    <span class="highlight-text">深淵な夜を纏う<br>艶やかな高密度サウンド</span>
+                    <span class="character-tag">【iOS限定】ブラン専用魔法</span>
+                    <p>深淵な夜を纏う、iOS限定のプレミアムプロファイル。普段の気怠さを脱ぎ捨てたブランが、あなたの耳元へダイレクトに届く圧倒的な「近さ」と艶感を徹底調律。吸い込まれるような音圧と高密度サウンドを展開します。</p>
+                    <ul class="pillar-list">
+                        <li><strong>[Blanc's Control]</strong> ドライさを保ちながら、吐息のニュアンスまで妖艶に拾い上げる仕事人クオリティ。</li>
+                        <li><strong>[Premium Matrix]</strong> iOSのハードウェアパワーを活かし、専用のゲイン・空気感を最適展開。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="preset-item clear-item">
+                <div class="premium-ribbon">PREMIUM</div>
+                <div class="preset-header">
+                    <span class="preset-name">CRYSTAL CLEAR</span>
+                    <span class="kana-name">クリスタルクリア</span>
+                    <span class="badge prism-white">PRISM WHITE EDITION</span>
+                </div>
+                <div class="preset-body">
+                    <span class="highlight-text">極限の解像度<br>淀みのない上品な密度感</span>
+                    <p>シアンマジック™のポテンシャルを最大限に引き出した極上のプロファイル。無駄な誇張を一切排除し、原音が持つクオリティを余すことなく引き上げます。シルキーで、どこまでもクリアで緻密な音響空間へと導く究極の構成です。</p>
                     
                     <ul class="pillar-list">
-                        <li><strong>ウェットな質感:</strong> 潤いと艶のあるリッチな響きへ。</li>
-                        <li><strong>包容する空間:</strong> 包み込まれるような、優しく深い没入感。</li>
-                        <li><strong>優しさと力強さ:</strong> 繊細な吐息を拾い上げつつ、芯の通った力強い存在感を。</li>
+                        <li><strong>[Deterministic]</strong> どこまでも安定した圧倒的な透明度へ。</li>
+                        <li><strong>[Zero Allocation]</strong> 音響処理の遅延を極限まで抑え込み、原音の美しさを100%引き出す。</li>
                     </ul>
                 </div>
+            </div> 
 
-                <div class="luan-whisper" style="text-align: right;">
-                    「……気づいたかい？ ここからはボクの本気の術式だ。乾いた音をシアンの雫で潤して、優しく、でも力強く君を包み込む『オーラ』を纏わせておいたよ。この魔法のフィールドに触れたら、もう元の世界には戻れないからね。」
-                </div>
-            </div>
-        </div>
+        </div> 
 
-        <section class="roadmap-section">
-            <h2 style="color:var(--cyan-magic); font-size: 2rem; font-weight: 900;">Android版、鋭意制作中。</h2>
-            <p>シアンマジックプロジェクトのOneClear.Cを、より多くの人の手元へ。<br>リリースまで、楽しみにお待ちください。</p>
-            
-            <div class="luan-whisper" style="max-width: 550px; text-align: center;">
-                「今は新しい世界（Android版）へのゲートを開いている最中だよ。時空の歪みを調整するのに少し時間がかかるけど……待つ価値のある『輝き』を約束するよ。シアンマジックの完成を、君もそこで見届けてよね。」
-            </div>
+        <section class="contact-section">
+            <h2>Contact</h2>
+            <p>OneClear.Bへのご質問、またはシアンマジックへのメッセージはこちらまで。</p>
+            <a href="mailto:cyanmagic.support@gmail.com" class="contact-link">cyanmagic.support@gmail.com</a>
         </section>
 
-        <section class="contact-section" style="text-align: center; margin-bottom: 100px; padding-top: 60px; border-top: 1px solid #eee;">
-            <h2 style="font-family:serif; color:var(--cyan-magic); font-size: 2.5rem; letter-spacing: 2px;">Contact</h2>
-            <p>OneClear.Cへのご質問、またはシアンマジックへのメッセージはこちらまで。</p>
-            <a href="mailto:oneclearstudio.cyanm@gmail.com" style="color: var(--cyan-magic); font-size: 1.6rem; font-weight: 700; text-decoration: none; border-bottom: 2px solid var(--cyan-magic); padding-bottom: 5px;">oneclearstudio.cyanm@gmail.com</a>
+        <!-- ご利用上の注意 -->
+        <section class="attention-section">
+            <div class="attention-box">
+                <h3>【重要】ご利用上の注意</h3>
+                <ul>
+                    <li>本アプリは高精度なリアルタイム音響解析およびオーディオ演算を常に実行するため、連続してご使用になる場合はスマートフォンの発熱、およびバッテリー消費が早くなることがあります。端末が著しく熱を持った場合は、一度アプリを終了し本体を休ませてください。</li>
+                    <li>読み込む動画・音声データの録画（再生）時間が長い場合、ファイルの解析やエフェクト処理の完了までにお時間をいただくことがあります。処理中はアプリを閉じずにそのままお待ちください。</li>
+                </ul>
+            </div>
         </section>
 
         <footer>
-            <div class="footer-copy" style="font-weight: 700;">&copy; 2026 Cyan Magic Project</div>
-            <div class="footer-links" style="margin: 10px 0;">
-                <a href="privacy.html" style="color: #00B2B2; text-decoration: none; font-size: 0.85rem;">プライバシーポリシー</a>
+            <img src="cyan_magic_logo.png" alt="Cyan Magic Project" class="footer-logo">
+            <div class="footer-copy">&copy; 2026 Cyan Magic Project</div>
+            <div class="footer-links">
+                <a href="terms_b.html">利用規約</a>
+                <span>|</span> 
+                <a href="privacy_b.html">プライバシーポリシー</a>
             </div>
-            <div class="footer-brand" style="color: #999; font-size: 0.9rem;">Product: OneClear.C | Master of Sound: ᚣᛟᛋᚻIᚳᚫᚹᚫ</div>
+            <div class="footer-brand">Product: OneClear.B (iOS) | Master of Sound</div>
         </footer>
     </div>
 </body>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OneClear.B 利用規約 | Cyan Magic Project</title>
+    <style>
+        :root {
+            --cyan-magic: #00B2B2;
+            --midnight-blue: #1a2f3b;
+            --dark-space: #0b1116;          /* ヘッダー画像に溶け込む深淵の黒 */
+            --card-dark: #121b22;           /* コンテンツを際立たせるダークグレー */
+            --text-light: #e2e8f0;          /* 視認性の高いクリアな白 */
+            --text-muted: #94a3b8;          /* 補助的な文言用のグレー */
+            --rune-soft: rgba(0, 178, 178, 0.15);
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', sans-serif;
+            background-color: var(--dark-space);
+            color: var(--text-light);
+            margin: 0; padding: 0;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container { max-width: 850px; margin: 0 auto; padding: 40px 20px; }
+
+        /* ご提示いただいた公式ヘッダーの構造を踏襲 */
+        .main-header { position: relative; width: 100%; background-color: var(--dark-space); line-height: 0; }
+        .header-image { width: 100%; height: auto; display: block; }
+        .header-signature {
+            position: absolute; bottom: 15px; right: 25px;
+            font-family: serif; font-size: 0.65rem; color: rgba(0, 178, 178, 0.2);
+            letter-spacing: 5px; pointer-events: none; user-select: none;
+        }
+
+        .card { 
+            background: var(--card-dark); 
+            padding: 55px; 
+            border-radius: 8px; 
+            border: 1px solid rgba(0, 178, 178, 0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5); 
+            margin-top: 40px;
+        }
+        h1 { 
+            color: #ffffff; 
+            font-size: 1.8rem; 
+            border-bottom: 2px solid var(--cyan-magic); 
+            padding-bottom: 15px; 
+            margin-top: 0; 
+            font-weight: 900;
+            letter-spacing: -0.5px;
+        }
+        h1 span { color: var(--cyan-magic); font-size: 1.2rem; display: block; margin-top: 5px; font-weight: 500; }
+        h2 { 
+            color: #ffffff; 
+            font-size: 1.25rem; 
+            margin-top: 45px; 
+            border-left: 4px solid var(--cyan-magic); 
+            padding-left: 15px; 
+            font-weight: 800; 
+        }
+        p, li { font-size: 0.95rem; color: var(--text-light); text-align: justify; }
+        ul, ol { padding-left: 20px; }
+        li { margin-bottom: 12px; }
+        strong { color: var(--cyan-magic); }
+        
+        .back-link { margin-top: 60px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; }
+        .back-link a { color: var(--cyan-magic); text-decoration: none; font-weight: bold; transition: opacity 0.2s; }
+        .back-link a:hover { opacity: 0.8; }
+        footer { text-align: center; margin-top: 60px; font-size: 0.85rem; color: var(--text-muted); font-weight: 700; }
+
+        @media (max-width: 750px) {
+            .card { padding: 35px 20px; }
+            h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <!-- 💡 OneClear.B専用の高画質PNGヘッダー画像 -->
+        <img src="OneClear.B HPHD.png" alt="OneClear.B (iOS)" class="header-image">
+        <div class="header-signature">ᚣᛟᛋᚻIᚳᚫᚹᚫ ᛏᚫᛏᛋᚢᚣᚫ</div>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h1>OneClear.B 利用規約<span>【Terms of Service】</span></h1>
+            <p>本利用規約（以下「本規約」といいます）は、Yoshikawa（以下「開発者」といいます）が開発・提供するスマートフォン向けアプリケーション「OneClear.B」（以下「本アプリ」といいます）の利用条件を定めるものです。ユーザーの皆様（以下「ユーザー」といいます）は、本規約に同意の上、本アプリをご利用ください。</p>
+
+            <h2>第1条（本アプリの基本方針とプライバシー）</h2>
+            <ol>
+                <li>本アプリは、音声および映像のポストプロセス処理をユーザーの端末内のみで完結して行う<strong>「完全ローカル処理型」</strong>のアプリケーションです。</li>
+                <li>開発者は、ユーザーが本アプリで撮影・編集した動画データ、音声データ、およびカメラ・マイクの入力情報を、いかなる外部サーバーにも送信・収集しません。</li>
+                <li>本アプリは、ユーザーのアカウント登録、氏名、メールアドレス等の個人情報を一切取得しない「プライバシー不保持（匿名性）」を運用の大前提としています。</li>
+            </ol>
+
+            <h2>第2条（知的財産権および利用許諾）</h2>
+            <ol>
+                <li>本アプリ、ならびに本アプリ内で提供される全てのプログラム、オーディオフィルター（C++エンジン等）、インパルスレスポンス（IR）データ、デザイン、ロゴ等に関する著作権、商標（<strong>「シアンマジック / Cyan Magic」</strong>を含みます）その他の知的財産権は、全て開発者または正当な権限を有する権利者に帰属します。</li>
+                <li>ユーザーが本アプリを使用して撮影・編集・生成した成果物（映像および音声データ。以下「ユーザー成果物」といいます）に関する一切の権利（著作権を含みます）は、ユーザーまたは当該権利の正当な権利者に帰属し、開発者がこれを取得することはありません。</li>
+                <li>開発者はユーザーに対し、本アプリを通常の範囲内で、非独占的に利用することのみを許諾します。</li>
+            </ol>
+
+            <h2>第3条（課金およびプレミアム機能）</h2>
+            <ol>
+                <li>本アプリ内の一部機能（プレミアム結晶プリセット「Midnight」等、およびプロ仕様のIR機能）は、有料のサブスクリプション（以下「プレミアム機能」といいます）として提供されます。</li>
+                <li>プレミアム機能の決済、有効期限の管理、解約等の手続きは、開発者が委託する決済管理システム（RevenueCat）およびApple Inc.の提供するApp Storeの決済システムを通じて行われます。開発者がユーザーのクレジットカード情報や決済履歴を直接保有・変更することはありません。</li>
+                <li>プレミアム機能のサブスクリプションは、ユーザーが選択した期間ごとに自動的に更新（課金）されます。自動更新を停止する場合は、有効期限が終了する24時間以上前までに、ユーザー自身のApp Storeアカウント設定よりサブスクリプションの解約（自動更新の停止）手続きを行う必要があります。有効期限直前での解約や、アプリの削除（アンインストール）のみでは自動更新は停止されません。</li>
+                <li>本規約に定めのない利用条件については、Appleが定める標準のアプリケーション利用許諾契約（Licensed Application End User License Agreement / EULA）が補完的に適用されるものとします。</li>
+            </ol>
+
+            <h2>第4条（禁止事項）</h2>
+            <p>ユーザーは、本アプリの利用にあたり、以下の行為を行ってはなりません。</p>
+            <ol>
+                <li>本アプリのプログラム、オーディオエンジン、または提供されるIRデータの解析、リバースエンジニアリング、逆コンパイル、または逆アセンブル行為。</li>
+                <li>本アプリ内の音声処理技術やIRデータを不正に抽出し、他のアプリケーションや外部サービスに転用・流用する行為。</li>
+                <li>意図的なバグの悪用、過度な連続リクエスト行為等、本アプリの正常な動作を妨害または端末に過度な負荷をかける行為。</li>
+                <li>第三者の著作権その他の知的財産権、プライバシー権、肖像権等の権利を侵害する動画を生成・公開する行為。</li>
+                <li>その他、開発者が不適切と判断する行為。</li>
+            </ol>
+
+            <h2>第5条（違反行為に対する措置および機能制限）</h2>
+            <ol>
+                <li>開発者は、ユーザーに前条（禁止事項）に該当する行為、またはその恐れがある行為を確認した場合、Apple Inc.が提供するデベロッパー向け管理機能（App Store Connect）および関連システム、ならびにアプリ内連携システムを経由することにより、事前の通知なしに、該当するユーザーへの本アプリの提供停止、または本アプリの一部もしくは全部の機能（プレミアム機能、書き出し機能等）へのアクセスを制限・ブロックする措置（サブスクリプションの無効化対応等を含みます）を取ることができるものとします。</li>
+                <li>開発者は、本条に基づく措置およびApple Inc.が講じたアカウント管理措置等によりユーザーに生じた損害について、一切の責任を負いません。</li>
+            </ol>
+
+            <h2>第6条（免責事項）</h2>
+            <ol>
+                <li>本アプリは「現状有姿」で提供され、その完全性、確実性、特定の音響効果や品質への適合性、期待される性能等について、開発者は明示的にも黙示的にもいかなる保証も行いません。</li>
+                <li>本アプリは完全ローカル処理であるため、ユーザーがアプリを削除（アンインストール）した場合、または端末の紛失・故障が発生した場合、過去に保存した動画データ（<strong>SAVED CRYSTALS</strong>）を開発者側で復旧することは不可能です。データのバックアップはユーザー自身の責任において行ってください。</li>
+                <li>ユーザー成果物の内容、およびユーザーが当該成果物を外部プラットフォーム（SNS等）に公開したことにより生じた第三者とのトラブルや損害について、開発者は一切の責任を負いません。</li>
+                <li>本アプリの利用（高負荷な映像・音声エンコード処理に伴う端末の発熱やバッテリー消費を含みます）によりユーザーまたは第三者に生じた損害について、開発者はいかなる責任も負いません。</li>
+            </ol>
+
+            <h2>第7条（規約の変更および管轄）</h2>
+            <ol>
+                <li>開発者は、必要と判断した場合には、ユーザーに事前通知することなくいつでも本規約を変更することができるものとします。変更後の規約は、本アプリ内に掲示された時点から効力を生じるものとします。</li>
+                <li>本規約の解釈にあたっては日本法を準拠法とし、本アプリに関して紛争が生じた場合には、開発者の所在地を管轄する裁判所を第一審の専属的合意管轄裁判所とします。</li>
+            </ol>
+
+            <p style="margin-top: 50px; font-weight: bold; text-align: right; color: var(--cyan-magic);">附則：2026年5月29日 制定・適用</p>
+
+            <div class="back-link">
+                <a href="index.html">← OneClear.B 公式サイトへ戻る</a>
+            </div>
+        </div>
+        <footer>&copy; 2026 Cyan Magic Project</footer>
+    </div>
+</body>
+</html>
