@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEGAL & PRIVACY | OneClear.C</title>
+    <style>
+        /* ─── 🔮 シアンマジック公式リーガルテーマ（PRISM WHITEライトモード統合版） ─── */
+        :root {
+            --cyan-magic: #00B2B2; /* Android側のメインシアン */
+            --cyan-text: #007a7a;
+            --ice-cyan-bg: #F0F9FA;
+            --text-color: #222222;
+            --card-light: #FFFFFF;
+            --text-muted: #777777;
+            --border-line: rgba(0, 178, 178, 0.15);
+            --whisper-bg: rgba(0, 178, 178, 0.05);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', sans-serif; 
+            line-height: 1.8; 
+            color: var(--text-color); 
+            background-color: var(--ice-cyan-bg); 
+            padding: 60px 20px;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .container { 
+            max-width: 840px; 
+            margin: 0 auto; 
+        }
+        
+        /* 📄 メインカード：PRISM WHITEに合わせた極薄プリズムグラデーション仕様 */
+        .card { 
+            background: linear-gradient(135deg, #FFFFFF 0%, #F5FAFA 40%, #FAEDF5 100%); 
+            padding: 50px 50px; 
+            border-radius: 12px; 
+            border: 1px solid var(--border-line);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.03); 
+        }
+        
+        /* 🔗 クイックナビゲーション */
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+        .nav-links a {
+            color: var(--cyan-text);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 700;
+            padding: 8px 20px;
+            border-radius: 6px;
+            background: #FFFFFF;
+            border: 1px solid rgba(0, 178, 178, 0.2);
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+        .nav-links a:hover {
+            background: var(--cyan-magic);
+            color: #FFFFFF;
+            border-color: var(--cyan-magic);
+            box-shadow: 0 4px 12px rgba(0, 178, 178, 0.2);
+            transform: translateY(-1px);
+        }
+        
+        section {
+            margin-bottom: 60px;
+        }
+        section:last-of-type {
+            margin-bottom: 0;
+            border-top: 1px solid rgba(0, 178, 178, 0.1);
+            padding-top: 50px;
+        }
+        
+        h1 { 
+            font-size: 1.8rem;
+            color: var(--text-color); 
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+            border-left: 6px solid var(--cyan-magic);
+            padding-left: 15px;
+        }
+        .subtitle {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 35px;
+            text-transform: uppercase;
+            padding-left: 21px;
+        }
+        
+        h2 { 
+            font-size: 1.15rem; 
+            margin-top: 40px; 
+            margin-bottom: 15px;
+            color: var(--cyan-text); 
+            font-weight: 800;
+            border-bottom: 1px solid rgba(0, 178, 178, 0.15);
+            padding-bottom: 6px;
+        }
+        
+        p { 
+            font-size: 0.92rem;
+            margin-bottom: 16px; 
+            color: #444444;
+            text-align: justify;
+        }
+        
+        ol, ul {
+            margin-left: 24px;
+            margin-bottom: 24px;
+            color: #444444;
+            font-size: 0.92rem;
+        }
+        li {
+            margin-bottom: 10px;
+            line-height: 1.75;
+        }
+        
+        /* ⚠️ 重要エリアのドレスアップ */
+        .important {
+            background: rgba(255, 76, 76, 0.03);
+            border-left: 4px solid #ff4c4c;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 25px 0;
+            border-top: 1px solid rgba(255, 76, 76, 0.08);
+            border-right: 1px solid rgba(255, 76, 76, 0.08);
+            border-bottom: 1px solid rgba(255, 76, 76, 0.08);
+        }
+        .important p {
+            color: #333333;
+            margin-bottom: 0;
+        }
+        
+        .highlight {
+            color: var(--text-color);
+            font-weight: 700;
+            background: rgba(0, 178, 178, 0.06);
+            padding: 1px 4px;
+            border-radius: 3px;
+        }
+        
+        /* インラインリンク等 */
+        .mail-link {
+            color: var(--cyan-magic);
+            font-weight: 700;
+            text-decoration: none;
+            border-bottom: 1px solid var(--cyan-magic);
+        }
+        .mail-link:hover {
+            color: var(--cyan-text);
+            border-bottom-color: var(--cyan-text);
+        }
+
+        .footer { 
+            margin-top: 50px; 
+            font-size: 0.82rem; 
+            color: var(--text-muted); 
+            text-align: center; 
+            line-height: 1.8;
+            border-top: 1px dashed rgba(0, 178, 178, 0.2);
+            padding-top: 30px;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            body { padding: 30px 15px; }
+            .card { padding: 35px 20px; border-radius: 12px; }
+            h1 { font-size: 1.45rem; }
+            h2 { font-size: 1.1rem; }
+            ol, ul { margin-left: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- 🔗 クイックナビゲーション -->
+    <div class="nav-links">
+        <a href="#terms">利用規約</a>
+        <a href="#privacy">プライバシーポリシー</a>
+    </div>
+
+    <div class="card">
+        
+        <!-- ==========================================
+             📜 SECTION 1: 利用規約
+             ========================================== -->
+        <section id="terms">
+            <h1>OneClear.C 利用規約</h1>
+            <div class="subtitle">Terms of Service</div>
+            
+            <p>本利用規約（以下「本規約」といいます）は、Yoshikawa（または本アプリの正当な提供者。以下「開発者」といいます）が開発・提供するスマートフォン向けアプリケーション「OneClear.C」（以下「本アプリ」といいます）の利用条件を定めるものです。ユーザーの皆様（以下「ユーザー」といいます）は、本規約に同意の上、本アプリをご利用ください。</p>
+
+            <h2>第1条（本アプリの基本方針とプライバシー）</h2>
+            <ol>
+                <li>本アプリは、音声および映像のポストプロセス処理をユーザーの端末内のみで完結して行う「完全ローカル処理型」のアプリケーションです。</li>
+                <li>開発者は、ユーザーが本アプリで撮影・編集した動画データ、音声データ、およびカメラ・マイクの入力情報を、いかなる外部サーバーにも送信・収集しません。</li>
+                <li>本アプリは、ユーザーのアカウント登録、氏名、メールアドレス等の個人情報を一切取得しない「プライバシー不保持（匿名性）」を運用の大前提としています。</li>
+            </ol>
+
+            <h2>第2条（知的財産権および利用許諾）</h2>
+            <ol>
+                <li>本アプリ、ならびに本アプリ内で提供される全てのプログラム、オーディオおよびビデオ処理エンジン（Androidネイティブメディアパイプライン等）、デザイン、ロゴ等に関する著作権、商標（「シアンマジック / Cyan Magic」を含みます）その他の知的財産権は、全て開発者または正当な権限を有する権利者に帰属します。</li>
+                <li>ユーザーが本アプリを使用して撮影・編集・生成した成果物（映像および音声データ。以下「ユーザー成果物」といいます）に関する一切の権利（著作権を含みます）は、ユーザーまたは当該権利の正当な権利者に帰属し、開発者がこれを取得することはありません。</li>
+                <li>開発者はユーザーに対し、本アプリを通常の範囲内で、非独占的に利用することのみを許諾します。</li>
+            </ol>
+
+            <h2>第3条（課金およびプレミアム機能）</h2>
+            <ol>
+                <li>本アプリ内の一部機能（プレミアムプリセット等。なお、プレミアム機能の対象、具体的な内容、およびその名称は、開発者の裁量により随時追加、変更、または削除されることがあります。）は、有料のサブスクリプション（以下「プレミアム機能」といいます）として提供されます。</li>
+                <li>プレミアム機能の決済、有効期限の管理、解約等の手続きは、開発者が委託する決済管理システム（RevenueCat）およびGoogle LLCの提供するGoogle Playストアの決済システムを通じて行われます。開発者がユーザーのクレジットカード情報や決済履歴を直接保有・変更することはありません。</li>
+                <li>プレミアム機能のサブスクリプションは、ユーザーが選択した期間ごとに自動的に更新（課金）されます。自動更新を停止する場合は、有効期限が終了する24時間以上前までに、ユーザー自身のGoogle Playストアのアカウント設定（定期購入の管理）よりサブスクリプションの解約（自動更新の停止）手続きを行う必要があります。有効期限直前での解約や、アプリの削除（アンインストール）のみでは自動更新は停止されません。</li>
+                <li>本規約に定めのない利用条件については、Google Play利用規約および関連するポリシーが補完的に適用されるものとします。</li>
+            </ol>
+
+            <h2>第4条（禁止事項）</h2>
+            <p>ユーザーは、本アプリの利用にあたり、以下の行為を行ってはなりません。</p>
+            <ol>
+                <li>本アプリのプログラム、メディア処理パイプラインの解析、リバースエンジニアリング、逆コンパイル、または逆アセンブル行為。</li>
+                <li>本アプリ内の音声・映像処理技術や内部データを不正に抽出し、他のアプリケーションや外部サービスに転用・流用する行為。</li>
+                <li>意図的なバグの悪用、過度な連続リクエスト行為等、本アプリの正常な動作を妨害または端末に過度な負荷をかける行為。</li>
+                <li>第三者の著作権その他の知的財産権、プライバシー権、肖像権等の権利を侵害する動画を生成・公開する行為。</li>
+                <li>その他、開発者が不適切と判断する行為。</li>
+            </ol>
+
+            <h2>第5条（違反行為に対する措置および機能制限）</h2>
+            <ol>
+                <li>開発者は、ユーザーに前条（禁止事項）に該当する行為、またはその恐れがある行為を確認した場合、Google LLCが提供するデベロッパー向け管理機能（Google Play Console）および関連システム、ならびにアプリ内連携システムを経由することにより、事前の通知なしに、該当するユーザーへの本アプリの提供停止、または本アプリの一部もしくは全部の機能（プレミアム機能、書き出し機能等）へのアクセスを制限・ブロックする措置（サブスクリプションの無効化対応等を含みます）を取ることができるものとします。</li>
+                <li>開発者は、本条に基づく措置およびGoogle LLCが講じたアカウント管理措置等によりユーザーに生じた損害について、一切の責任を負いません。</li>
+            </ol>
+
+            <h2>第6条（免責事項）</h2>
+            <ol>
+                <li>本アプリは「現状有姿」で提供され、その完全性、確実性、特定の音響効果や品質への適合性、期待される性能等について、開発者は明示的にも黙示的にもいかなる保証も行いません。</li>
+                <li><span class="highlight">【ハードウェア依存に関する免責】</span>本アプリは、端末標準のハードウェアエンコーダーおよびメディア処理命令（MediaCodec等）を直接駆動して高速なローカル処理を行います。Android端末は多種多様なハードウェア構成（SoC、メーカー固有の最適化等）が存在する特性上、すべての端末において同一の処理速度、画質、音質、または完全な動作を保証するものではありません。特定の端末固有のハードウェア制限、色空間の差異、またはエンコーダーの挙動に起因する動作の中断や不具合について、開発者は一切の責任を負いません。</li>
+                <li>本アプリは完全ローカル処理であるため、ユーザーがアプリを削除（アンインストール）した場合、端末の紛失・故障が発生した場合、または録画・処理中に電話の着信や他アプリへの切り替え等によって本アプリが中断・終了した場合、進行中のデータや過去に保存した動画データ（SAVED CRYSTALS）を開発者側で復旧することは不可能です。データのバックアップはユーザー自身の責任において行ってください。</li>
+                <li>ユーザー成果物の内容、およびユーザーが当該成果物を外部プラットフォーム（SNS等）に公開したことにより生じた第三者とのトラブルや損害について、開発者は一切の責任を負いません。</li>
+                <li>本アプリの利用（高負荷な映像・音声エンコード処理に伴う端末の発熱やバッテリー消費、およびOSのアップデート等に起因する動作不具合を含みます）によりユーザーまたは第三者に生じた損害について、開発者はいかなる責任も負いません。</li>
+            </ol>
+            
+            <div class="important">
+                <p><span class="highlight">【重要】</span>本条および本規約の他の規定にかかわらず、開発者がユーザーに対して法律上の損害賠償責任を負う場合（開発者に故意または重大な過失がある場合を除きます）、その賠償責任の範囲は、ユーザーに現実に生じた通常の損害に限られるものとし、かつ、その賠償総額は、当該損害の発生原因となった事由が生じた日までにユーザーが本アプリのプレミアム機能（サブスクリプション）に関して開発者に支払った対価の総額、または5,000円のいずれか高い額を上限とします。</p>
+            </div>
+
+            <h2>第7条（規約の変更および管轄）</h2>
+            <ol>
+                <li>開発者は、必要と判断した場合には、ユーザーに事前通知することなくいつでも本規約を変更することができるものとします。変更後の規約は、本アプリ内に掲示された時点から効力を生じるものとします。</li>
+                <li>開発者は、自身の裁量により、本アプリのアップデート、仕様変更、特定の機能の提供停止、または本アプリ自体の提供終了をいつでも行うことができるものとし、これによってユーザーに生じた不利益や損害について一切の責任を負いません。</li>
+                <li>本規約の解釈にあたっては日本法を準拠法とし、本アプリに関して紛争が生じた場合には、開発者の所在地を管轄する裁判所を第一審の専属的合意管轄裁判所とします。</li>
+            </ol>
+        </section>
+
+
+        <!-- ==========================================
+             🛡️ SECTION 2: プライバシーポリシー
+             ========================================== -->
+        <section id="privacy">
+            <h1>OneClear.C プライバシーポリシー</h1>
+            <div class="subtitle">Privacy Policy</div>
+
+            <p>Yoshikawa（または本アプリの正当な提供者。以下「当開発者」といいます）は、スマートフォン向けアプリケーション「OneClear.C」（以下「本アプリ」といいます）におけるユーザー情報の取り扱いについて、以下の通りプライバシーポリシー（以下「本ポリシー」といいます）を定めます。</p>
+
+            <h2>第1条（基本方針：個人情報の非取得）</h2>
+            <p>本アプリは、ユーザーのプライバシーを最優先に考え設計されています。当開発者は、ユーザーが当開発者へ問い合わせを行う際に自発的に開示する情報を除き、ユーザーの氏名、メールアドレス、電話番号、クレジットカード情報、その他特定の個人を識別できる情報（以下「個人情報」といいます）を一切取得・収集いたしません。ユーザー登録やアカウント作成の必要もなく、完全に匿名でご利用いただけます。</p>
+
+            <h2>第2条（データの完全ローカル処理と外部送信の禁止）</h2>
+            <ol>
+                <li>本アプリで撮影、録音、または編集される全ての映像データ、音声データは、外部のエンコードサーバー等を使用せず、端末が持つネイティブなハードウェア処理機能（MediaCodec等）を利用してユーザーの端末内（ローカル環境）でのみ演算・処理されます。</li>
+                <li>当開発者は、これらのメディアデータをいかなる外部サーバーにも送信せず、保管も行いません。完全なオフライン状態でも動作する端末完結型の構造を維持しています。</li>
+            </ol>
+
+            <h2>第3条（デバイスの権限利用について）</h2>
+            <p>本アプリの機能を提供するため、Android OSが規定する以下の端末権限を使用します。これらの権限により得られた情報が外部に送信されたり、目的外に利用されることは決してありません。</p>
+            <ul>
+                <li><span class="highlight">カメラ（RECORD_VIDEO / CAMERA）：</span>ビデオ撮影およびリアルタイムプレビューの表示に使用します。</li>
+                <li><span class="highlight">録音・マイク（RECORD_AUDIO）：</span>高音質オーディオの収録および端末内ポストプロセス処理のために使用します。</li>
+                <li><span class="highlight">ストレージ・メディアアクセス（READ_MEDIA_VIDEO / WRITE_EXTERNAL_STORAGE 等）：</span>生成された動画ファイルを端末内のギャラリーまたは保管庫（SAVED CRYSTALS）へ保存、および書き出しを行うために使用します。</li>
+            </ul>
+
+            <h2>第4条（アプリ内課金および決済システムへのデータ委託）</h2>
+            <ol>
+                <li>本アプリが提供するサブスクリプション（プレミアム機能）の購入履歴、および有効期限の検証処理は、決済管理システム「RevenueCat」およびGoogle LLCが運営する「Google Playストア」のシステムを介して安全に処理されます。</li>
+                <li>当開発者がユーザーの決済手段、クレジットカード番号などのデータを直接閲覧・収集・保持することはありません。また、RevenueCat等に送信されるデータは、個人の特定を排除した匿名的レシート識別子（匿名ID）に限定されており、ユーザー個人の氏名や連絡先が紐付けられることはありません。</li>
+            </ol>
+
+            <h2>第5条（アクセス解析および広告識別子の利用について）</h2>
+            <p>本アプリは、ユーザーの動向を追跡する外部のデータ解析ツールや、第三者による行動ターゲティング広告を一切導入していません。したがって、ADID（Google広告識別子）等の情報をマーケティング目的で追跡・収集することはありません。</p>
+
+            <h2>第6条（データの保護および復旧に関する免責）</h2>
+            <p>本アプリはサーバーを一切持たない完全ローカル運用であるため、ユーザーが本アプリを削除（アンインストール）した場合、または端末の紛失・故障等が発生した場合、アプリ内に保存されていた動画データ（SAVED CRYSTALS）を当開発者側で復旧することは技術的に不可能です。重要なデータの管理・バックアップはユーザー自身の責任において行ってください。</p>
+
+            <h2>第7条（プライバシーポリシーの変更）</h2>
+            <p>当開発者は、法令の制定・改正や本アプリのアップデート、Google Playストアのポリシー改訂等に伴い、本ポリシーをいつでも変更することができるものとします。変更後の本ポリシーは、本アプリ内に掲載された時点から効力を生じるものとします。</p>
+
+            <h2>第8条（お問い合わせ窓口）</h2>
+            <p>本ポリシー、または本アプリにおけるユーザー情報の取り扱いに関するお問い合わせは、以下の窓口までご連絡ください。</p>
+            <p style="margin-bottom: 5px;">担当窓口：OneClear.C 開発サポート（Yoshikawa）</p>
+            <p>Email: <a href="mailto:cyanmagic.support@gmail.com" class="mail-link">cyanmagic.support@gmail.com</a></p>
+        </section>
+
+        <!-- ─── フッタークレジット ─── -->
+        <div class="footer">
+            &copy; 2026 Cyan Magic Project / Yoshikawa<br>
+            改訂・適用日: 2026年6月26日
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

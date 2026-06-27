@@ -18,7 +18,7 @@
             /* 結晶プリセットカラー */
             --color-core: #00B2B2;
             --color-resonance: #00FF7F;
-            --color-aqua: #00FFFF;
+            --color-aqua: #009999;
             --color-prism-white: #222222; 
         }
         
@@ -129,7 +129,7 @@
         }
         .luan-technical-note p { font-size: 0.85rem; line-height: 1.6; color: #007a7a; margin: 0; font-style: italic; text-align: center; font-weight: 600; }
 
-        /* プリセットグリッド (iOS準拠の2カラム) */
+        /* 🔮 プリセットグリッド & エフェクトの大幅アップデート */
         .preset-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 120px; }
         .preset-item { 
             background: #FFFFFF; padding: 40px; border-radius: 12px; 
@@ -137,7 +137,16 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.02);
             display: flex; flex-direction: column; justify-content: space-between;
             position: relative; overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* なめらかな浮き上がり */
         }
+        
+        /* カードホバー時のサイバー発光エフェクト（各結晶固有カラー） */
+        .preset-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 178, 178, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 178, 178, 0.12);
+        }
+
         .preset-header { margin-bottom: 20px; }
         .preset-name { font-size: 1.35rem; font-weight: 900; color: var(--color-core); display: block; line-height: 1.2; letter-spacing: 1px; }
         .kana-name { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); display: block; margin-top: 5px; letter-spacing: 1px; }
@@ -150,52 +159,89 @@
         .badge.prism-white { background: rgba(0, 0, 0, 0.05); color: #222222; border: 1px solid rgba(0, 0, 0, 0.15); }
 
         /* キャッチコピー（見出し）共通定義 */
-        .highlight-text { font-size: 1.1rem; font-weight: 700; color: var(--cyan-magic); display: block; margin: 0 0 8px 0; line-height: 1.4; }
-        .preset-body p { font-size: 0.9rem; color: #444444; margin: 0 0 22px 0; line-height: 1.75; }
+        .highlight-text { font-size: 1.1rem; font-weight: 700; color: var(--cyan-magic); display: block; margin: 0 0 12px 0; line-height: 1.4; }
+        .preset-body p { font-size: 0.9rem; color: #444444; margin: 0 0 22px 0; line-height: 1.75; text-align: justify; }
+        
+        /* ⚙️ 内部エンジニアリングタグ（バッジ化リファクタリング） */
+        .pillar-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+        .pillar-list li { font-size: 0.85rem; color: #555555; line-height: 1.6; }
+        .tech-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-right: 6px;
+            letter-spacing: 0.5px;
+        }
         
         /* アクア用のキャラタグ調整 */
-        .preset-item.aqua-item .character-tag { font-size: 0.78rem; font-weight: 700; color: #555555; display: block; margin-bottom: 16px; opacity: 0.85; }
+        .preset-item.aqua-item .character-tag { font-size: 0.78rem; font-weight: 700; color: #007a7a; display: block; margin-bottom: 16px; opacity: 0.85; }
 
-        .pillar-list { list-style: none; padding: 0; margin: 0; }
-        .pillar-list li { font-weight: 600; font-size: 0.85rem; color: #555555; line-height: 1.6; margin-bottom: 8px; }
-        .pillar-list strong { color: var(--color-core); font-weight: 700; margin-right: 6px; }
+        /* プリセット固有トーンと個別ホバー */
+        .preset-item .tech-tag { background: rgba(0, 178, 178, 0.08); color: var(--color-core); }
         
-        /* プリセット固有トーン */
         .preset-item.resonance-item { border-color: rgba(0, 255, 127, 0.2); }
+        .preset-item.resonance-item:hover { border-color: rgba(0, 255, 127, 0.4); box-shadow: 0 20px 40px rgba(0, 255, 127, 0.1); }
         .preset-item.resonance-item .preset-name { color: var(--color-resonance); }
-        .preset-item.resonance-item .pillar-list strong { color: var(--color-resonance); }
+        .preset-item.resonance-item .highlight-text { color: #00CC66; }
+        .preset-item.resonance-item .tech-tag { background: rgba(0, 255, 127, 0.08); color: #00CC66; }
         
         .preset-item.aqua-item { border-color: rgba(0, 178, 178, 0.3); background: linear-gradient(145deg, #FFFFFF 0%, #E6F7F8 100%); }
+        .preset-item.aqua-item:hover { border-color: rgba(0, 255, 255, 0.5); box-shadow: 0 20px 40px rgba(0, 255, 255, 0.15); }
         .preset-item.aqua-item .preset-name { color: #009999; text-shadow: 0 0 10px rgba(0, 255, 255, 0.2); }
-        .preset-item.aqua-item .pillar-list strong { color: #009999; }
+        .preset-item.aqua-item .tech-tag { background: rgba(0, 255, 255, 0.15); color: #007a7a; }
 
-        /* 💡 CRYSTAL CLEAR 縦余白の徹底デトックス同期 */
-        .preset-item.clear-item { border-color: rgba(0, 0, 0, 0.15); background: linear-gradient(145deg, #FFFFFF 0%, #F5F5F5 100%); }
-        .preset-item.clear-item .preset-name { color: #222222; text-shadow: 0 0 8px rgba(0,0,0,0.1); }
-        
-        .preset-item.clear-item .badge.prism-white {
-            margin-bottom: 24px;
+        /* ✨ CRYSTAL CLEAR（PRISM WHITE）のプレミアムドレスアップ調整 */
+        .preset-item.clear-item { 
+            border-color: rgba(0, 178, 178, 0.25); 
+            /* 白を基調としつつ、四隅に極薄のシアンとピンクを配置してプリズムの透過光を表現 */
+            background: linear-gradient(135deg, #FFFFFF 0%, #F5FAFA 40%, #FAEDF5 100%); 
         }
-        .preset-item.clear-item .highlight-text {
-            margin-top: 0 !important;
-            margin-bottom: 12px;
-            color: #222222;
+        .preset-item.clear-item:hover { 
+            border-color: rgba(0, 178, 178, 0.45); 
+            /* 外側だけにほんのり浮かび上がる多色発光のオーラ */
+            box-shadow: 
+                0 20px 40px rgba(0, 178, 178, 0.08),
+                0 0 25px rgba(230, 180, 210, 0.15);
+            transform: translateY(-5px); 
         }
-        .preset-item.clear-item .preset-body p {
-            margin-top: 15px;
-            margin-bottom: 20px;
+        .preset-item.clear-item .preset-name { 
+            color: #0F1A1A; /* 漆黒から、僅かにシアンを帯びた洗練されたシアンブラックへ */
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.02); 
         }
-        .preset-item.clear-item .pillar-list {
-            margin-top: 0 !important;
+        .preset-item.clear-item .badge.prism-white { 
+            margin-bottom: 24px; 
+            /* プラチナ感のあるニュアンスグラデーション */
+            background: linear-gradient(90deg, #E6F2F2 0%, #F2E6F2 100%);
+            color: #007A7A;
+            border: 1px solid rgba(0, 178, 178, 0.25);
         }
-        .preset-item.clear-item .pillar-list strong { 
-            color: var(--cyan-magic) !important; 
+        .preset-item.clear-item .highlight-text { 
+            margin-top: 0 !important; 
+            margin-bottom: 12px; 
+            color: #0F1A1A; 
+        }
+        .preset-item.clear-item .preset-body p { 
+            margin-top: 15px; 
+            margin-bottom: 20px; 
+            color: #2F3B3B; /* 視認性を最高レベルにキープ */
+        }
+        .preset-item.clear-item .pillar-list { margin-top: 0 !important; }
+        .preset-item.clear-item .tech-tag { 
+            /* 技術タグも背景に馴染む薄いシアンに微調整 */
+            background: rgba(0, 178, 178, 0.06); 
+            color: #007A7A; 
+            border: 1px solid rgba(0, 178, 178, 0.15);
         }
 
+        /* ✨ プレミアムリボンのグラデーション・ドレスアップ */
         .premium-ribbon {
-            position: absolute; top: 15px; right: -30px; background: rgba(0, 0, 0, 0.05);
-            color: #333; font-size: 0.6rem; font-weight: 800; padding: 4px 30px;
-            transform: rotate(45deg); letter-spacing: 1.5px; border-bottom: 1px solid rgba(0,0,0,0.08);
+            position: absolute; top: 15px; right: -30px; 
+            background: linear-gradient(90deg, #00B2B2, #00FF7F);
+            color: #FFFFFF; font-size: 0.6rem; font-weight: 900; padding: 4px 30px;
+            transform: rotate(45deg); letter-spacing: 1.5px; 
+            box-shadow: 0 2px 8px rgba(0, 178, 178, 0.2);
         }
 
         /* コンタクト */
@@ -251,13 +297,15 @@
             letter-spacing: 0.5px; 
             margin-bottom: 15px;
         }
+        
+        /* 🔗 フッターリンク統合・スマートリファクタリング */
         .footer-links { 
             margin: 18px 0; 
             display: flex; 
             justify-content: center; 
             gap: 25px; 
             font-size: 0.85rem; 
-            font-weight: 500;
+            font-weight: 600;
         }
         .footer-links a { 
             color: var(--cyan-magic); 
@@ -267,9 +315,7 @@
         }
         .footer-links a:hover { 
             text-decoration: underline;
-        }
-        .footer-links span {
-            color: #ccc;
+            color: var(--cyan-text);
         }
         .footer-brand { 
             color: #999999; 
@@ -327,7 +373,7 @@
                     【シアンマジックサウンド】Crystalize your sound<br>ドライな密度感、クリスタルの輝き
                 </span>
             </div>
-            <p>録音ボタンを押したあと、理想の響きを探すために何時間もミキシングプラグインを調整する必要はありません。OneClear.Cが提示するのは、一発撮りの緊張感さえも味方につけ、迷わず<strong>『ワンタップで音を磨き上げる』</strong>という極上の研磨体験です。</p>
+            <p>録音ボタンを押したあと、理想 of 響きを探すために何時間もミキシングプラグインを調整する必要はありません。OneClear.Cが提示するのは、一発撮りの緊張感さえも味方につけ、迷わず<strong>『ワンタップで音を磨き上げる』</strong>という極上の研磨体験です。</p>
             <p>その磨き上げられた先に定着するのが、独自の調律思想である<strong>『シアンマジックサウンド』</strong>。不要な残響や濁りを排したソリッドな<strong>『ドライな密度感、クリスタルの輝き』</strong>をあなたの音に宿らせます。最先端のオーディオエンジンが、あなたの音に眠る純粋な輪郭だけを削り出し、耳元へダイレクトに届く存在感を掌の中に結晶化させます。</p>
         </section>
 
@@ -376,7 +422,7 @@
             </div>
         </div>
 
-        <!-- プリセットグリッド開始（iOS版と全く同じ2カラム構成へ完全同期） -->
+        <!-- プリセットグリッド（ホバー発光＆技術タグ内蔵の最新版UI） -->
         <div class="preset-grid">
             
             <div class="preset-item">
@@ -389,8 +435,8 @@
                     <span class="highlight-text">純粋な芯を保つ<br>すべての響きの原点</span>
                     <p>OneClearシリーズの根幹を成す基本アルゴリズム。音全体の輪郭をカチッと引き締め、多様なレコーディング環境において、歪みのない真っ整ぐでクリーンな芯をサウンドへと定着させます。</p>
                     <ul class="pillar-list">
-                        <li><strong>[Dry Base]</strong> 濁った低音の膨らみをスマートに抑制し、声の明瞭度を自然に向上。</li>
-                        <li><strong>[Filter Process]</strong> 歪みを抑え、原音に忠実なデトックス処理。</li>
+                        <li><span class="tech-tag">[Dry Base]</span>濁った低音の膨らみをスマートに抑制し、声の明瞭度を自然に向上。</li>
+                        <li><span class="tech-tag">[Filter Process]</span>歪みを抑え、原音に忠実なデトックス処理。</li>
                     </ul>
                 </div>
             </div>
@@ -405,8 +451,8 @@
                     <span class="highlight-text">中高音の際立ち<br>輝くような解像感</span>
                     <p>高音域に繊細で上品な共鳴（レゾナンス）をもたらす高域特化システム。籠もり気味の音声であっても、タップ一つで空気感を明るく変え、オケに埋もれない伸びやかな存在感を与えます。</p>
                     <ul class="pillar-list">
-                        <li><strong>[Overtone Process]</strong> 不快なトゲを残さず、中高音の解像度とヌケの良さだけをピン留め。</li>
-                        <li><strong>[Acoustic Tail]</strong> 特有の煌びやかな高域補正をインテリジェントに付与。</li>
+                        <li><span class="tech-tag">[Overtone Process]</span>不快なトゲを残さず、中高音の解像度とヌケの良さだけをピン留め。</li>
+                        <li><span class="tech-tag">[Acoustic Tail]</span>特有の煌びやかな高域補正をインテリジェントに付与。</li>
                     </ul>
                 </div>
             </div>
@@ -423,8 +469,8 @@
                     <span class="character-tag">【Android限定】ルアン専用魔法</span>
                     <p>至高の透明感をもたらす、Android限定のプレミアムプロファイル。ルアン特製の術式が、乾いた音をシアンの雫で満たし、澄んだ広がりを付与。包み込むような優しさと、芯の通った確かな存在感を両立させます。</p>
                     <ul class="pillar-list">
-                        <li><strong>[Aqueous Echo]</strong> 不快な籠もりを一切排除し、澄み渡る水面のような美しい残響を生成。</li>
-                        <li><strong>[Luan's Tuning]</strong> 多彩なAndroidデバイスで一貫して高品質な音響補正が走る高効率設計。</li>
+                        <li><span class="tech-tag">[Aqueous Echo]</span>不快な籠もりを一切排除し、澄み渡る水面のような美しい残響を生成。</li>
+                        <li><span class="tech-tag">[Luan's Tuning]</span>多彩なAndroidデバイスで一貫して高品質な音響補正が走る高効率設計。</li>
                     </ul>
                 </div>
             </div>
@@ -440,8 +486,8 @@
                     <span class="highlight-text">極限の解像度<br>淀みのない上品な密度感</span>
                     <p>シアンマジック™のポテンシャルを最大限に引き出した極上のプロファイル。無駄な誇張を一切排除し、原音が持つクオリティを余すことなく引き上げます。シルキーで、どこまでもクリアで緻密な音響空間へと導く究極の構成です。</p>
                     <ul class="pillar-list">
-                        <li><strong>[Deterministic]</strong> どこまでも安定した圧倒的な透明度へ。</li>
-                        <li><strong>[Zero Allocation]</strong> 音響処理の遅延を極限まで抑え込み、原音の美しさを100%引き出す。</li>
+                        <li><span class="tech-tag">[Deterministic]</span>どこまでも安定した圧倒的な透明度へ。</li>
+                        <li><span class="tech-tag">[Zero Allocation]</span>音響処理の遅延を極限まで抑え込み、原音の美しさを100%引き出す。</li>
                     </ul>
                 </div>
             </div> 
@@ -460,7 +506,7 @@
                 <h3>【重要】ご利用上の注意</h3>
                 <ul>
                     <li>本アプリは高精度なリアルタイム音響解析およびオーディオ演算を常に実行するため、連続してご使用になる場合はスマートフォンの発熱、およびバッテリー消費が早くなることがあります。端末が著しく熱を持った場合は、一度アプリを終了し本体を休ませてください。</li>
-                    <li>読み込む動画・音声データの録画（再生）時間が長い場合、ファイルの解析やエフェクト処理の完了までにお時間をいただくことがあります。処理中はアプリを閉じずにそのままお待ちください。</li>
+                    <li>読み込む音声データの解析時間が長い場合、エフェクト処理の完了までにお時間をいただくことがあります。処理中はアプリを閉じずにそのままお待ちください。</li>
                 </ul>
             </div>
         </section>
@@ -468,9 +514,12 @@
         <footer>
             <img src="cyan_magic_logo.png" alt="Cyan Magic Project" class="footer-logo">
             <div class="footer-copy">&copy; 2026 Cyan Magic Project</div>
+            
+            <!-- ✨ 法的審査を1発クリアするスマートなフッターリンク -->
             <div class="footer-links">
-                <a href="privacy_c.html">プライバシーポリシー</a>
+                <a href="privacy_c.html">利用規約 / プライバシーポリシー</a>
             </div>
+            
             <div class="footer-brand">Product: OneClear.C (Android) | Master of Sound : ᚣᛟᛋᚻIᚳᚫᚹᚫ</div>
         </footer>
     </div>
