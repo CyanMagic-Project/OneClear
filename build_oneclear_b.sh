@@ -1,21 +1,16 @@
 #!/bin/bash
 set -e
 
-# スクリプトがある場所へ移動
 cd "$(dirname "$0")"
 SCRIPT_DIR="$(pwd)"
 
-# 🌟 大元のソースフォルダを絶対パスで固定（道迷い防止）
 FFMPEG_DIR="/Users/yoshikawatatsuya/Desktop/native_engineのコピー/ffmpeg_source"
 MIN_IOS_VERSION=15.0
 
-# 🌟 出力フォルダ（BUILD_DIR）をOneClear.B専用の名前にして完全隔離
 BUILD_DIR="$SCRIPT_DIR/../build_oneclear_b"
 
-# 🌟 出荷ターゲットのベースフォルダ
 APP_NATIVE_ENGINE_DIR="/Users/yoshikawatatsuya/Desktop/CyanSeed/OneClear.B/ios/native_engine"
 
-# 🌟 デスクトップの SoXR パス
 SOXR_DIR="/Users/yoshikawatatsuya/Desktop/soxr_for_ios"
 
 # 【OneClear Engine .B 最終構成】
@@ -72,26 +67,20 @@ build_arch () {
   make -j$(sysctl -n hw.ncpu)
   make install
   
-  # 🌟 3. ビルドされた成果物を指定の構造に分離して自動出荷
   echo "----------------------------------------"
   echo "Deploying built libraries with BUILD_INFO to OneClear.B project..."
   echo "----------------------------------------"
   
-  # 出荷先フォルダを定義：ios/libs/ffmpeg
   DEST_DIR="${APP_NATIVE_ENGINE_DIR}/libs/ffmpeg"
   
-  # 古い出荷先を一度完全クリア
   rm -rf "$DEST_DIR"
   
-  # 提案通りの分離構造フォルダを作成
   mkdir -p "${DEST_DIR}/lib"
   mkdir -p "${DEST_DIR}/include"
   
-  # 分離して格納
   cp -R "${OUTPUT}/lib/"*.a "${DEST_DIR}/lib/"
   cp -R "${OUTPUT}/include/"* "${DEST_DIR}/include/"
   
-  # 🌟 4. 管理用ラベル「BUILD_INFO.txt」の自動生成
   cat <<EOF > "${DEST_DIR}/BUILD_INFO.txt"
 FFmpeg 8.0.2
 VideoToolbox & Image Debugger enabled
