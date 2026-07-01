@@ -43,27 +43,79 @@
             letter-spacing: 5px; pointer-events: none; user-select: none;
         }
 
-        /* 誘導バナー */
-        .android-teaser {
+        /* 💡 統合されたOS案内バナー（最上部） */
+        .os-routing-banner {
             background: var(--card-dark); 
-            border: 1px solid rgba(0, 229, 255, 0.05); 
+            border: 1px solid rgba(0, 229, 255, 0.12); 
             border-radius: 12px;
-            padding: 18px 24px; margin: 20px 0 0 0; 
+            padding: 20px 24px; margin: 20px 0 0 0; 
             display: flex; justify-content: space-between; align-items: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 25px rgba(0,0,0,0.3);
+            gap: 20px;
         }
-        .android-teaser-text { font-size: 0.88rem; font-weight: 600; color: #94a3b8; }
+        .android-teaser-text { font-size: 0.88rem; font-weight: 600; color: #94a3b8; flex: 1; }
         .android-teaser-text span { color: var(--cyan-magic); font-weight: 700; }
-        .android-link-btn {
+        
+        .ios-action-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .tuning-badge {
             background: #1e293b; color: #64748b; border: 1px solid rgba(255,255,255,0.05); text-decoration: none;
-            font-size: 0.8rem; font-weight: 800; padding: 8px 18px; border-radius: 6px; transition: all 0.3s ease;
-            pointer-events: none; box-shadow: none; white-space: nowrap;
+            font-size: 0.75rem; font-weight: 800; padding: 6px 12px; border-radius: 6px; white-space: nowrap;
+            letter-spacing: 0.5px;
+        }
+
+        /* 💡 シアン魔術インラインボタン（バナー内＆下部共通） */
+        .appstore-magic-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #00E5FF 0%, #00A2B1 100%);
+            color: #0b1116;
+            font-size: 0.95rem;
+            font-weight: 800;
+            padding: 10px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+        .appstore-magic-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 0 30px rgba(0, 229, 255, 0.7);
+            opacity: 0.95;
+        }
+        .appstore-magic-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: #0b1116;
+        }
+
+        /* 下部専用の大型ストアボタンエリア */
+        .bottom-store-area {
+            text-align: center;
+            margin: 20px 0 80px 0;
+        }
+        .bottom-store-area .appstore-magic-btn {
+            font-size: 1.1rem;
+            padding: 14px 38px;
+            border-radius: 30px;
+            box-shadow: 0 0 25px rgba(0, 229, 255, 0.35);
+        }
+        .bottom-store-area .appstore-magic-btn svg {
+            width: 22px;
+            height: 22px;
         }
 
         /* メインキャッチ */
         .main-catch {
             font-size: 3.2rem; font-weight: 900; color: #ffffff;
-            line-height: 1.3; margin: 90px 0; letter-spacing: -1px;
+            line-height: 1.3; margin: 80px 0; letter-spacing: -1px;
             border-left: 8px solid var(--cyan-magic); padding-left: 25px;
         }
         .main-catch span { 
@@ -144,25 +196,21 @@
         .preset-name { font-size: 1.35rem; font-weight: 900; color: var(--color-core); display: block; line-height: 1.2; letter-spacing: 1px; }
         .kana-name { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); display: block; margin-top: 5px; letter-spacing: 1px; }
         
-        /* バッジ自体のスタイル定義（下部に安全なマージンを確保） */
         .badge { font-size: 0.65rem; padding: 3px 10px; border-radius: 4px; font-weight: 800; letter-spacing: 1px; display: inline-block; margin-top: 12px; margin-bottom: 15px; }
         .badge.core { background: rgba(0, 229, 255, 0.1); color: var(--color-core); border: 1px solid rgba(0, 229, 255, 0.3); }
         .badge.resonance { background: rgba(0, 255, 127, 0.08); color: var(--color-resonance); border: 1px solid rgba(0, 255, 127, 0.3); }
         .badge.midnight { background: rgba(191, 0, 255, 0.1); color: var(--color-midnight); border: 1px solid rgba(191, 0, 255, 0.3); }
         .badge.prism-white { background: rgba(255, 255, 255, 0.08); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.4); text-shadow: 0 0 4px rgba(255,255,255,0.5); }
 
-        /* キャッチコピー（見出し）共通定義：不自然なマージンをリセット */
         .highlight-text { font-size: 1.1rem; font-weight: 700; color: var(--cyan-magic); display: block; margin: 0 0 8px 0; line-height: 1.4; }
         .preset-body p { font-size: 0.9rem; color: #cbd5e1; margin: 0 0 22px 0; line-height: 1.75; }
         
-        /* ミッドナイト用のタグ調整 */
         .preset-item.midnight-item .character-tag { font-size: 0.78rem; font-weight: 700; color: #94a3b8; display: block; margin-bottom: 16px; opacity: 0.85; }
 
         .pillar-list { list-style: none; padding: 0; margin: 0; }
         .pillar-list li { font-weight: 600; font-size: 0.85rem; color: #94a3b8; line-height: 1.6; margin-bottom: 8px; }
         .pillar-list strong { color: var(--color-core); font-weight: 700; margin-right: 6px; }
         
-        /* プリセット固有トーン */
         .preset-item.resonance-item { border-color: rgba(0, 255, 127, 0.2); }
         .preset-item.resonance-item .preset-name { color: var(--color-resonance); }
         .preset-item.resonance-item .pillar-list strong { color: var(--color-resonance); }
@@ -171,25 +219,13 @@
         .preset-item.midnight-item .preset-name { color: var(--color-midnight); text-shadow: 0 0 15px rgba(191, 0, 255, 0.4); }
         .preset-item.midnight-item .pillar-list strong { color: var(--color-midnight); }
 
-        /* 💡 プリズムホワイト（#F8F9FA）と微発光＆影をガチガチに適用 */
         .preset-item.clear-item { border-color: rgba(255, 255, 255, 0.25); background: linear-gradient(145deg, #121b22 0%, #202428 100%); }
         .preset-item.clear-item .preset-name { color: var(--color-prism-white); text-shadow: 0 0 15px rgba(255,255,255,0.6), 0 0 4px var(--cyan-magic); }
         
-        /* 💡 CRYSTAL CLEAR 縦余白の徹底デトックス */
-        .preset-item.clear-item .badge.prism-white {
-            margin-bottom: 24px;   /* バッジと「極限の解像度」の間を適正なゆとり(24px)に固定 */
-        }
-        .preset-item.clear-item .highlight-text {
-            margin-top: 0 !important;
-            margin-bottom: 12px;   /* 「極限の解像度」と「淀みのない〜」を自然に繋ぎつつ引き締める */
-        }
-        .preset-item.clear-item .preset-body p {
-            margin-top: 15px;     /* 見出しと説明文の間の空白 */
-            margin-bottom: 20px;  /* 説明文と箇条書きの間の空白をスマートに調整 */
-        }
-        .preset-item.clear-item .pillar-list {
-            margin-top: 0 !important; /* ブラウザ標準のulの上マージンを完全抹殺 */
-        }
+        .preset-item.clear-item .badge.prism-white { margin-bottom: 24px; }
+        .preset-item.clear-item .highlight-text { margin-top: 0 !important; margin-bottom: 12px; }
+        .preset-item.clear-item .preset-body p { margin-top: 15px; margin-bottom: 20px; }
+        .preset-item.clear-item .pillar-list { margin-top: 0 !important; }
         .preset-item.clear-item .pillar-list strong { 
             color: var(--color-prism-white) !important; 
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.5), 1px 1px 2px #000000 !important; 
@@ -208,94 +244,30 @@
         .contact-link:hover { opacity: 0.8; }
 
         /* 最下部のご利用上の注意セクション */
-        .attention-section {
-            margin-bottom: 100px;
-            padding-top: 40px;
-            border-top: 1px dashed rgba(0, 229, 255, 0.1);
-        }
-        .attention-box {
-            background: rgba(18, 27, 34, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            padding: 25px 30px;
-            text-align: left;
-        }
-        .attention-box h3 {
-            font-size: 0.9rem;
-            color: #94a3b8;
-            margin-top: 0;
-            margin-bottom: 15px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-        .attention-box ul {
-            margin: 0;
-            padding-left: 20px;
-        }
-        .attention-box li {
-            font-size: 0.82rem;
-            color: #8193a2;
-            line-height: 1.7;
-            margin-bottom: 10px;
-        }
-        .attention-box li:last-child {
-            margin-bottom: 0;
-        }
+        .attention-section { margin-bottom: 100px; padding-top: 40px; border-top: 1px dashed rgba(0, 229, 255, 0.1); }
+        .attention-box { background: rgba(18, 27, 34, 0.6); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 25px 30px; text-align: left; }
+        .attention-box h3 { font-size: 0.9rem; color: #94a3b8; margin-top: 0; margin-bottom: 15px; font-weight: 700; letter-spacing: 0.5px; }
+        .attention-box ul { margin: 0; padding-left: 20px; }
+        .attention-box li { font-size: 0.82rem; color: #8193a2; line-height: 1.7; margin-bottom: 10px; }
+        .attention-box li:last-child { margin-bottom: 0; }
 
         /* フッターまわり */
-        footer { 
-            text-align: center; 
-            padding: 60px 20px 140px 20px; 
-            border-top: 1px solid rgba(0, 229, 255, 0.08); 
-            background: var(--dark-space); 
-        }
-        .footer-logo { 
-            width: 240px; 
-            height: auto; 
-            margin: 0 auto 30px auto; 
-            display: block;
-            filter: drop-shadow(0 4px 15px rgba(0, 229, 255, 0.15));
-        }
-        .footer-copy { 
-            font-weight: 700; 
-            color: #ffffff; 
-            font-size: 0.95rem; 
-            letter-spacing: 0.5px; 
-            margin-bottom: 15px;
-        }
-        .footer-links { 
-            margin: 18px 0; 
-            display: flex; 
-            justify-content: center; 
-            gap: 25px; 
-            font-size: 0.85rem; 
-            font-weight: 500;
-        }
-        .footer-links a { 
-            color: rgba(0, 229, 255, 0.65); 
-            text-decoration: none; 
-            transition: color 0.2s ease, text-shadow 0.2s ease;
-            letter-spacing: 0.5px;
-        }
-        .footer-links a:hover { 
-            color: var(--cyan-magic); 
-            text-shadow: 0 0 8px rgba(0, 229, 255, 0.6);
-        }
-        .footer-links span {
-            color: rgba(255, 255, 255, 0.15);
-        }
-        .footer-brand { 
-            color: #627d98; 
-            font-size: 0.78rem; 
-            margin-top: 35px; 
-            letter-spacing: 1px;
-            font-weight: 500;
-            display: block;
-        }
+        footer { text-align: center; padding: 60px 20px 140px 20px; border-top: 1px solid rgba(0, 229, 255, 0.08); background: var(--dark-space); }
+        .footer-logo { width: 240px; height: auto; margin: 0 auto 30px auto; display: block; filter: drop-shadow(0 4px 15px rgba(0, 229, 255, 0.15)); }
+        .footer-copy { font-weight: 700; color: #ffffff; font-size: 0.95rem; letter-spacing: 0.5px; margin-bottom: 15px; }
+        .footer-links { margin: 18px 0; display: flex; justify-content: center; gap: 25px; font-size: 0.85rem; font-weight: 500; }
+        .footer-links a { color: rgba(0, 229, 255, 0.65); text-decoration: none; transition: color 0.2s ease, text-shadow 0.2s ease; letter-spacing: 0.5px; }
+        .footer-links a:hover { color: var(--cyan-magic); text-shadow: 0 0 8px rgba(0, 229, 255, 0.6); }
+        .footer-links span { color: rgba(255, 255, 255, 0.15); }
+        .footer-brand { color: #627d98; font-size: 0.78rem; margin-top: 35px; letter-spacing: 1px; font-weight: 500; display: block; }
 
         /* レスポンシブ */
         @media (max-width: 768px) {
             .container { padding: 20px 15px; }
+            .os-routing-banner { flex-direction: column; gap: 16px; text-align: center; padding: 20px 15px; }
+            .ios-action-wrapper { flex-direction: column; width: 100%; gap: 10px; }
+            .appstore-magic-btn { width: 100%; box-sizing: border-box; font-size: 1rem; padding: 12px 20px; }
+            .tuning-badge { width: 100%; box-sizing: border-box; text-align: center; }
             .main-catch { font-size: 2.2rem; margin: 60px 0; padding-left: 15px; }
             .main-catch span { font-size: 2.4rem; }
             .concept-card { padding: 30px; margin-bottom: 40px; }
@@ -308,8 +280,8 @@
             .character-aside { width: 100%; }
             .preset-grid { grid-template-columns: 1fr; gap: 30px; margin-bottom: 80px; }
             .preset-item { padding: 30px; }
-            .android-teaser { flex-direction: column; gap: 12px; text-align: center; padding: 15px; }
             .footer-logo { width: 180px; } 
+            .bottom-store-area .appstore-magic-btn { width: 100%; padding: 14px 24px; font-size: 1.05rem; }
         }
     </style>
 </head>
@@ -322,9 +294,19 @@
 
     <div class="container">
         
-        <div class="android-teaser">
-            <div class="android-teaser-text">Androidスマートフォンをお使いですか？ <span>OneClear.C（Android版）は現在、魔法の調律（開発中）を進めています。</span></div>
-            <span class="android-link-btn">TUNING NOW...</span>
+        <div class="os-routing-banner">
+            <div class="android-teaser-text">
+                Android版をお探しですか？ <span>OneClear.C（Android版）は現在、魔法の調律（開発中）を進めています。</span>
+            </div>
+            <div class="ios-action-wrapper">
+                <span class="tuning-badge">Android: TUNING NOW...</span>
+                <a href="https://apps.apple.com/jp/app/oneclear-b/id6778664913" target="_blank" rel="noopener noreferrer" class="appstore-magic-btn">
+                    <svg viewBox="0 0 170 170">
+                        <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.34.22-9.29-1.9-14.84-6.35-3.35-2.72-7.23-7.38-11.66-13.97-11.37-16.71-17.06-35.21-17.06-55.49 0-15.53 4.12-28.53 12.35-38.99 8.24-10.46 18.52-15.74 30.83-15.85 5.42 0 11.28 1.57 17.58 4.7 6.29 3.14 10.3 4.71 12.03 4.71 1.41 0 5.64-1.68 12.69-5.04 7.05-3.36 13.12-4.88 18.23-4.57 14.43 1.19 25.4 6.35 32.92 15.49-13.56 8.24-20.19 19.85-19.89 34.81.33 11.72 4.72 21.48 13.17 29.28 8.46 7.81 18.44 11.99 29.93 12.53-2.38 6.84-5.63 13.67-9.72 20.49zM119.22 31.84c0-7.7 2.76-14.88 8.29-21.54 5.53-6.67 12.42-10.3 20.66-10.3.11.98.16 1.85.16 2.61 0 7.49-2.88 14.65-8.63 21.49-5.75 6.84-12.74 10.48-20.98 10.91-.33-1.09-.5-2.17-.5-3.17z"/>
+                    </svg>
+                    <span>iOS版は App Store へ</span>
+                </a>
+            </div>
         </div>
         
         <h1 class="main-catch">
@@ -344,7 +326,6 @@
             <p>その磨き上げられた先に定着するのが、独自の調律思想である<strong>『シアンマジックサウンド』</strong>。不要な残響や濁りを排したソリッドな<strong>『ドライな密度感、クリスタルの輝き』</strong>をあなたの音に宿らせます。最先端のオーディオエンジンが、あなたの音に眠る純粋な輪郭だけを削り出し、耳元へダイレクトに届く存在感を掌の中に結晶化させます。</p>
         </section>
 
-        <!-- Tipsセクション -->
         <section class="tips-section">
             <h2>💡 OneClearのポテンシャルを最大限に引き出すコツ</h2>
             <p style="font-size: 0.95rem; color: #94a3b8; margin: 0 0 25px 0;">『OneClear』の鮮やかな音声処理（シアンマジックサウンド）をより効果的に実感していただくための、おすすめの録音方法です。</p>
@@ -356,11 +337,11 @@
                 </li>
                 <li>
                     <span class="tips-item-title">● 静かな環境での録音がベース</span>
-                    <p class="tips-item-text">本アプリは高度な音声補正・加工を行いますが、極端な騒音や部屋の強い反響など、録音環境そのものを完全にゼロに補正するものではありません。できるだけ静かな空間で録音していただくと、驚くほどクリアな結果が得られます。</p>
+                    <p class="tips-item-text">本アプリは高度な音声補正・加工を行いますが、極端な騒音や部屋の強い反響 node、録音環境そのものを完全にゼロに補正するものではありません。できるだけ静かな空間で録音していただくと、驚くほどクリアな結果が得られます。</p>
                 </li>
                 <li>
                     <span class="tips-item-title">● 身近な有線イヤホンを活用しよう（弾き語りにもおすすめ！）</span>
-                    <p class="tips-item-text">スマートフォン単体での録音はもちろん、<strong>お手持ちの有線イヤホンマイクを接続して録音するのもおすすめです。弾き語りの際にも歌声と楽器のバランスが綺麗に整いやすくなります</strong>ので、いつものスマホ環境でぜひお気軽に試してみてください。</p>
+                    <p class="tips-item-text">スマートフォン単体での録音もちろん、<strong>お手持ちの有線イヤホンマイクを接続して録音するのもおすすめです。弾き語りの際にも歌声と楽器のバランスが綺麗に整いやすくなります</strong>ので、いつものスマホ環境でぜひお気軽に試してみてください。</p>
                 </li>
             </ul>
             
@@ -389,7 +370,6 @@
             </div>
         </div>
 
-        <!-- プリセットグリッド開始 -->
         <div class="preset-grid">
             
             <div class="preset-item">
@@ -434,7 +414,7 @@
                 <div class="preset-body">
                     <span class="highlight-text">深淵な夜を纏う<br>艶やかな高密度サウンド</span>
                     <span class="character-tag">【iOS限定】ブラン専用魔法</span>
-                    <p>深淵な夜を纏う、iOS限定のプレミアムプロファイル。普段の気怠さを脱ぎ捨てたブランが、あなたの耳元へダイレクトに届く圧倒的な「近さ」と艶感を徹底調律。吸い込まれるような音圧と高密度サウンドを展開します。</p>
+                    <p>深淵な夜を纏う、iOS限定 of プレミアムプロファイル。普段の気怠さを脱ぎ捨てたブランが、あなたの耳元へダイレクトに届く圧倒的な「近さ」と艶感を徹底調律。吸い込まれるような音圧と高密度サウンドを展開します。</p>
                     <ul class="pillar-list">
                         <li><strong>[Blanc's Control]</strong> ドライさを保ちながら、吐息のニュアンスまで妖艶に拾い上げる仕事人クオリティ。</li>
                         <li><strong>[Premium Matrix]</strong> iOSのハードウェアパワーを活かし、専用のゲイン・空気感を最適展開.</li>
@@ -461,6 +441,14 @@
             </div> 
 
         </div> 
+        <div class="bottom-store-area">
+            <a href="https://apps.apple.com/jp/app/oneclear-b/id6778664913" target="_blank" rel="noopener noreferrer" class="appstore-magic-btn">
+                <svg viewBox="0 0 170 170">
+                    <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.34.22-9.29-1.9-14.84-6.35-3.35-2.72-7.23-7.38-11.66-13.97-11.37-16.71-17.06-35.21-17.06-55.49 0-15.53 4.12-28.53 12.35-38.99 8.24-10.46 18.52-15.74 30.83-15.85 5.42 0 11.28 1.57 17.58 4.7 6.29 3.14 10.3 4.71 12.03 4.71 1.41 0 5.64-1.68 12.69-5.04 7.05-3.36 13.12-4.88 18.23-4.57 14.43 1.19 25.4 6.35 32.92 15.49-13.56 8.24-20.19 19.85-19.89 34.81.33 11.72 4.72 21.48 13.17 29.28 8.46 7.81 18.44 11.99 29.93 12.53-2.38 6.84-5.63 13.67-9.72 20.49zM119.22 31.84c0-7.7 2.76-14.88 8.29-21.54 5.53-6.67 12.42-10.3 20.66-10.3.11.98.16 1.85.16 2.61 0 7.49-2.88 14.65-8.63 21.49-5.75 6.84-12.74 10.48-20.98 10.91-.33-1.09-.5-2.17-.5-3.17z"/>
+                </svg>
+                <span>App Store で OneClear.B をダウンロード</span>
+            </a>
+        </div>
 
         <section class="contact-section">
             <h2>Contact</h2>
@@ -468,7 +456,6 @@
             <a href="mailto:cyanmagic.support@gmail.com" class="contact-link">cyanmagic.support@gmail.com</a>
         </section>
 
-        <!-- ご利用上の注意 -->
         <section class="attention-section">
             <div class="attention-box">
                 <h3>【重要】ご利用上の注意</h3>
