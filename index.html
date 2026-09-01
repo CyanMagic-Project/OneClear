@@ -145,7 +145,7 @@
         /* Tipsセクションスタイル */
         .tips-section {
             background: var(--card-dark); padding: 45px 40px; border-radius: 12px;
-            margin-bottom: 80px; border: 1px solid rgba(0, 229, 255, 0.2);
+            margin-bottom: 60px; border: 1px solid rgba(0, 229, 255, 0.2);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
         }
         .tips-section h2 { color: #ffffff; font-size: 1.4rem; margin-top: 0; font-weight: 800; margin-bottom: 25px; display: flex; align-items: center; gap: 8px; }
@@ -156,14 +156,42 @@
         .tips-note { font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; margin: 0; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; }
 
         /* 音響リードコピー */
-        .audio-statement { text-align: center; margin: 100px 0; }
-        .audio-statement .statement-main { font-size: 2.2rem; font-weight: 900; color: #ffffff; letter-spacing: 2px; display: block; margin-bottom: 15px; }
-        .audio-statement .statement-sub { font-size: 1.1rem; color: #94a3b8; font-weight: 500; display: block; }
+        .audio-statement { 
+            text-align: center; 
+            margin: 50px 0 40px 0; 
+        }
+        .audio-statement .statement-main { 
+            font-size: 3.2rem; 
+            font-weight: 900; 
+            color: var(--cyan-magic); 
+            letter-spacing: 2px; 
+            display: block; 
+            margin-bottom: 16px; 
+            text-shadow: 0 0 25px rgba(0, 229, 255, 0.4);
+        }
+        .audio-statement .statement-sub { 
+            font-size: 1.6rem; 
+            color: #ffffff; 
+            font-weight: 800; 
+            display: block; 
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        .audio-statement .statement-sub .highlight {
+            color: var(--cyan-magic);
+        }
+        .audio-statement .statement-guide {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            font-weight: 500;
+            display: block;
+            line-height: 1.7;
+        }
 
         /* ストーリーセクション */
         .story-section {
             background: var(--card-dark); padding: 45px 40px;
-            margin-bottom: 100px; border-radius: 12px;
+            margin-bottom: 80px; border-radius: 12px;
             border-left: 4px solid var(--cyan-magic);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
             display: flex; flex-direction: column; gap: 35px;
@@ -198,26 +226,31 @@
             background: var(--card-dark); padding: 40px; border-radius: 12px; 
             border: 1px solid var(--border-line);
             box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-            display: flex; flex-direction: column; justify-content: space-between;
+            display: flex; flex-direction: column; 
+            justify-content: flex-start; /* 💡 上詰めに変更して無駄な引っ張り空間を解除 */
             position: relative; overflow: hidden;
         }
-        .preset-header { margin-bottom: 20px; }
+        .preset-header { margin-bottom: 25px; min-height: 95px; } /* 💡 ヘッダーの高さを揃える */
         .preset-name { font-size: 1.35rem; font-weight: 900; color: var(--color-core); display: block; line-height: 1.2; letter-spacing: 1px; }
         .kana-name { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); display: block; margin-top: 5px; letter-spacing: 1px; }
         
-        .badge { font-size: 0.65rem; padding: 3px 10px; border-radius: 4px; font-weight: 800; letter-spacing: 1px; display: inline-block; margin-top: 12px; margin-bottom: 15px; }
+        .badge { font-size: 0.65rem; padding: 3px 10px; border-radius: 4px; font-weight: 800; letter-spacing: 1px; display: inline-block; margin-top: 12px; margin-bottom: 0; }
         .badge.core { background: rgba(0, 229, 255, 0.1); color: var(--color-core); border: 1px solid rgba(0, 229, 255, 0.3); }
         .badge.resonance { background: rgba(0, 255, 127, 0.08); color: var(--color-resonance); border: 1px solid rgba(0, 255, 127, 0.3); }
         .badge.midnight { background: rgba(191, 0, 255, 0.1); color: var(--color-midnight); border: 1px solid rgba(191, 0, 255, 0.3); }
         .badge.prism-white { background: rgba(255, 255, 255, 0.08); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.4); text-shadow: 0 0 4px rgba(255,255,255,0.5); }
 
-        .highlight-text { font-size: 1.1rem; font-weight: 700; color: var(--cyan-magic); display: block; margin: 0 0 8px 0; line-height: 1.4; }
+        .preset-body { flex: 1; display: flex; flex-direction: column; }
+        .highlight-text { font-size: 1.1rem; font-weight: 700; color: var(--cyan-magic); display: block; margin: 0 0 12px 0; line-height: 1.4; }
         .preset-body p { font-size: 0.9rem; color: #cbd5e1; margin: 0 0 22px 0; line-height: 1.75; }
         
-        .preset-item.midnight-item .character-tag { font-size: 0.78rem; font-weight: 700; color: #94a3b8; display: block; margin-bottom: 16px; opacity: 0.85; }
+        .character-tag { font-size: 0.78rem; font-weight: 700; color: #94a3b8; display: block; margin-bottom: 16px; opacity: 0.85; }
+        /* 💡 タグがないカードの文章余白を補正してキャッチコピー位置をピタッと揃える */
+        .character-tag-placeholder { height: 16px; margin-bottom: 16px; }
 
-        .pillar-list { list-style: none; padding: 0; margin: 0; }
+        .pillar-list { list-style: none; padding: 0; margin: auto 0 0 0; } /* 💡 下のリスト位置を統一 */
         .pillar-list li { font-weight: 600; font-size: 0.85rem; color: #94a3b8; line-height: 1.6; margin-bottom: 8px; }
+        .pillar-list li:last-child { margin-bottom: 0; }
         .pillar-list strong { color: var(--color-core); font-weight: 700; margin-right: 6px; }
         
         .preset-item.resonance-item { border-color: rgba(0, 255, 127, 0.2); }
@@ -230,11 +263,6 @@
 
         .preset-item.clear-item { border-color: rgba(255, 255, 255, 0.25); background: linear-gradient(145deg, #121b22 0%, #202428 100%); }
         .preset-item.clear-item .preset-name { color: var(--color-prism-white); text-shadow: 0 0 15px rgba(255,255,255,0.6), 0 0 4px var(--cyan-magic); }
-        
-        .preset-item.clear-item .badge.prism-white { margin-bottom: 24px; }
-        .preset-item.clear-item .highlight-text { margin-top: 0 !important; margin-bottom: 12px; }
-        .preset-item.clear-item .preset-body p { margin-top: 15px; margin-bottom: 20px; }
-        .preset-item.clear-item .pillar-list { margin-top: 0 !important; }
         .preset-item.clear-item .pillar-list strong { 
             color: var(--color-prism-white) !important; 
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.5), 1px 1px 2px #000000 !important; 
@@ -281,14 +309,17 @@
             .main-catch span { font-size: 2.4rem; }
             .concept-card { padding: 30px; margin-bottom: 40px; }
             .concept-title { font-size: 1.25rem !important; }
-            .tips-section { padding: 30px 20px; margin-bottom: 60px; }
-            .audio-statement { margin: 80px 0; }
-            .audio-statement .statement-main { font-size: 1.6rem; }
-            .audio-statement .statement-sub { font-size: 1rem; }
+            .tips-section { padding: 30px 20px; margin-bottom: 40px; }
+            .audio-statement { margin: 40px 0 30px 0; }
+            .audio-statement .statement-main { font-size: 2.2rem; }
+            .audio-statement .statement-sub { font-size: 1.3rem; }
+            .audio-statement .statement-guide { font-size: 0.95rem; }
             .story-section { padding: 30px 20px; gap: 25px; margin-bottom: 80px; }
             .character-aside { width: 100%; }
             .preset-grid { grid-template-columns: 1fr; gap: 30px; margin-bottom: 80px; }
             .preset-item { padding: 30px; }
+            .preset-header { min-height: auto; margin-bottom: 20px; }
+            .character-tag-placeholder { display: none; }
             .footer-logo { width: 180px; } 
             .bottom-store-area .appstore-magic-btn { width: 100%; padding: 14px 24px; font-size: 1.05rem; }
         }
@@ -331,8 +362,8 @@
                     【シアンマジックサウンド】Crystalize your sound<br>ドライな密度感、クリスタルの輝き
                 </span>
             </div>
-            <p>録音ボタンを押したあと、理想の響きを探すために何時間もミキシングプラグインを調整する必要はありません。OneClear.Bが提示するのは、一発撮りの緊張感さえも味方につけ、迷わず<strong>『ワンタップで音を磨き上げる』</strong>という極上の研磨体験です。</p>
-            <p>その磨き上げられた先に定着するのが、独自の調律思想である<strong>『シアンマジックサウンド』</strong>。不要な残響や濁りを排したソリッドな<strong>『ドライな密度感、クリスタルの輝き』</strong>をあなたの音に宿らせます。最先端のオーディオエンジンが、あなたの音に眠る純粋な輪郭だけを削り出し、耳元へダイレクトに届く存在感を掌の中に結晶化させます。</p>
+            <p>録音ボタンを押したあと、理想の響きを探すために何度も音作りを調整する必要はありません。OneClear.Bが提示するのは、一発撮りの緊張感さえも味方につけ、迷わず<strong>『ワンタップで音を磨き上げる』</strong>という極上の研磨体験です。</p>
+            <p>その磨き上げられた先に定着するのが、独自の調律思想である<strong>『シアンマジックサウンド』</strong>。不要な残響や濁りを抑え、ソリッドな<strong>『ドライな密度感とクリスタルの輝き』</strong>をあなたの音に宿らせます。最先端のオーディオエンジンが、あなたの音に眠る純粋な輪郭だけを削り出し、耳元へダイレクトに届く存在感を掌の中に結晶化させます。</p>
         </section>
 
         <section class="tips-section">
@@ -342,15 +373,15 @@
             <ul class="tips-list">
                 <li>
                     <span class="tips-item-title">● マイクとの距離は適切に</span>
-                    <p class="tips-item-text">話者と内蔵マイクの距離が遠すぎると、音声処理の効果が感じにくくなることがあります。スマホを適切な位置に保って録音していただくのがベストです。</p>
+                    <p class="tips-item-text">適切な距離を保って録音していただくことで、より自然な音質でお楽しみいただけます。</p>
                 </li>
                 <li>
-                    <span class="tips-item-title">● 静かな環境での録音がベース</span>
-                    <p class="tips-item-text">本アプリは高度な音声補正・加工を行いますが、極端な騒音や部屋の強い反響 node、録音環境そのものを完全にゼロに補正するものではありません。できるだけ静かな空間で録音していただくと、驚くほどクリアな結果が得られます。</p>
+                    <span class="tips-item-title">● 静かな環境で録音</span>
+                    <p class="tips-item-text">できるだけ静かな空間で録音すると、よりクリアな仕上がりになります。</p>
                 </li>
                 <li>
-                    <span class="tips-item-title">● 身近な有線イヤホンを活用しよう（弾き語りにもおすすめ！）</span>
-                    <p class="tips-item-text">スマートフォン単体での録音もちろん、<strong>お手持ちの有線イヤホンマイクを接続して録音するのもおすすめです。弾き語りの際にも歌声と楽器のバランスが綺麗に整いやすくなります</strong>ので、いつものスマホ環境でぜひお気軽に試してみてください。</p>
+                    <span class="tips-item-title">● 身近な有線イヤホンを活用しよう</span>
+                    <p class="tips-item-text">お手持ちの有線イヤホンマイクで録音するのもおすすめです。<strong>弾き語りでは、歌声と楽器がまとまり、まるでミックスしたような聴きやすいサウンドに仕上がりやすくなります</strong>ので、いつものスマホ環境でぜひお気軽に試してみてください。</p>
                 </li>
             </ul>
             
@@ -359,7 +390,8 @@
 
         <div class="audio-statement">
             <span class="statement-main">あなたの声に、シアンマジック</span>
-            <span class="statement-sub">あなたの声はどの結晶で輝きますか？<br>磨き抜かれたソリッドな高密度サウンドが、ここから始まります。</span>
+            <span class="statement-sub">あなたの声はどの<span class="highlight">クリスタル</span>で輝きますか？</span>
+            <span class="statement-guide">磨き抜かれたソリッドな高密度サウンドが、ここから始まります。<br>下記の4つのクリスタル・プリセットから、理想の響きをお選びください。</span>
         </div>
 
         <div class="story-section">
@@ -381,6 +413,7 @@
 
         <div class="preset-grid">
             
+            <!-- CRYSTAL CORE -->
             <div class="preset-item">
                 <div class="preset-header">
                     <span class="preset-name">CRYSTAL CORE</span>
@@ -389,30 +422,34 @@
                 </div>
                 <div class="preset-body">
                     <span class="highlight-text">純粋な芯を保つ<br>すべての響きの原点</span>
-                    <p>シアンマジックサウンドの根幹を成す基本アルゴリズム。音全体の輪郭をカチッと引き締め、多様なレコーディング環境において、歪みのない真っ直ぐでクリーンな芯をサウンドへと定着させます。</p>
+                    <div class="character-tag-placeholder"></div>
+                    <p>すべての響きの原点となる基盤サウンド。歪みのない、真っ直ぐでクリアな芯を音に与えます。</p>
                     <ul class="pillar-list">
-                        <li><strong>[Dry Base]</strong> 濁った低音の膨らみをスマートに抑制し、声の明瞭度を自然に向上。</li>
-                        <li><strong>[Filter Process]</strong> 歪みを抑え、原音に忠実なデトックス処理.</li>
+                        <li><strong>[Dry Base]</strong> 濁った低音のこもりをスマートに抑え、声や音の明瞭度を自然に向上。</li>
+                        <li><strong>[Filter Process]</strong> 雑味や歪みを抑え、原音に忠実でクリアな音へ整音。</li>
                     </ul>
                 </div>
             </div>
 
+            <!-- CRYSTAL RESONANCE -->
             <div class="preset-item resonance-item">
-    <div class="preset-header">
-        <span class="preset-name">CRYSTAL RESONANCE</span>
-        <span class="kana-name">クリスタルレゾナンス</span>
-        <span class="badge resonance">HIGH RESOLUTION</span>
-    </div>
-    <div class="preset-body">
-        <span class="highlight-text">中高音の際立ち<br>輝くような解像感</span>
-        <p>高音域に繊細で上品な共鳴（レゾナンス）をもたらす高域特化システム。ボーカルへ自然な空気感と伸びを与え、ギターやアコースティックサウンドの輪郭も鮮やかに引き立てます。オケに埋もれない軽やかな存在感を実現します。</p>
-        <ul class="pillar-list">
-            <li><strong>[Overtone Process]</strong> 不快なトゲを残さず、中高音の解像度とヌケの良さだけをピン留め。</li>
-            <li><strong>[Acoustic Tail]</strong> 特有の煌びやかな高域補正をインテリジェントに付与。</li>
-        </ul>
-    </div>
-</div>
+                <div class="preset-header">
+                    <span class="preset-name">CRYSTAL RESONANCE</span>
+                    <span class="kana-name">クリスタルレゾナンス</span>
+                    <span class="badge resonance">SPATIAL RESONANCE</span>
+                </div>
+                <div class="preset-body">
+                    <span class="highlight-text">自然な共鳴と解像感<br>伸びやかな広がり</span>
+                    <div class="character-tag-placeholder"></div>
+                    <p>中高音の輝きと自然な共鳴を引き出すアコースティックサウンド。伸びやかな存在感と、心地よい空間の広がりを与えます。</p>
+                    <ul class="pillar-list">
+                        <li><strong>[Spatial Process]</strong> 嫌な反響を抑え、豊かで自然なステレオ空間を構築。</li>
+                        <li><strong>[Acoustic Tail]</strong> 演奏の輪郭を損なわず、美しく溶け込む上質な残響を付与。</li>
+                    </ul>
+                </div>
+            </div>
 
+            <!-- CRYSTAL MIDNIGHT -->
             <div class="preset-item midnight-item">
                 <div class="premium-ribbon">PREMIUM</div>
                 <div class="preset-header">
@@ -421,16 +458,17 @@
                     <span class="badge midnight">iOS ONLY / BLANC'S MAGIC</span>
                 </div>
                 <div class="preset-body">
-                    <span class="highlight-text">深淵な夜を纏う<br>艶やかな高密度サウンド</span>
+                    <span class="highlight-text">深淵な夜を纏う<br>温かく包み込むサウンド</span>
                     <span class="character-tag">【iOS限定】ブラン専用魔法</span>
-                    <p>深淵な夜を纏う、iOS限定 of プレミアムプロファイル。普段の気怠さを脱ぎ捨てたブランが、あなたの耳元へダイレクトに届く圧倒的な「近さ」と艶感を徹底調律。吸い込まれるような音圧と高密度サウンドを展開します。</p>
+                    <p>深夜の静けさを纏う、温かく包み込むサウンド。近くに感じるボーカルと、しっとりと広がる余韻が特徴のiOS限定プレミアムプロファイルです。</p>
                     <ul class="pillar-list">
-                        <li><strong>[Blanc's Control]</strong> ドライさを保ちながら、吐息のニュアンスまで妖艶に拾い上げる仕事人クオリティ。</li>
-                        <li><strong>[Premium Matrix]</strong> iOSのハードウェアパワーを活かし、専用のゲイン・空気感を最適展開.</li>
+                        <li><strong>[Blanc's Control]</strong> ドライさを保ちながら、吐息や弦の繊細なニュアンスまで艶やかに拾い上げる調律。</li>
+                        <li><strong>[Premium Matrix]</strong> 中低域のコクと空気感を最適化し、耳当たりの良い落ち着いたトーンへ。</li>
                     </ul>
                 </div>
             </div>
 
+            <!-- CRYSTAL CLEAR -->
             <div class="preset-item clear-item">
                 <div class="premium-ribbon">PREMIUM</div>
                 <div class="preset-header">
@@ -439,17 +477,18 @@
                     <span class="badge prism-white">PRISM WHITE EDITION</span>
                 </div>
                 <div class="preset-body">
-                    <span class="highlight-text">極限の解像度<br>淀みのない上品な密度感</span>
-                    <p>シアンマジック™のポテンシャルを最大限に引き出した極上のプロファイル。無駄な誇張を一切排除し、原音が持つ透明感と解像感を自然に引き上げます。クリアで緻密な音響空間がまるでスタジオで仕上げたような上品なサウンドに導きます。</p>
-                    
+                    <span class="highlight-text">最高峰の象徴<br>透明感と上品な密度感</span>
+                    <div class="character-tag-placeholder"></div>
+                    <p>シアンマジックサウンドの象徴。音のポテンシャルを最大限に引き出し、透明感と上品な密度感を兼ね備えたスタジオライクなサウンドへ導きます。</p>
                     <ul class="pillar-list">
-                        <li><strong>[Deterministic]</strong> どこまでも安定した圧倒的な透明度へ。</li>
-                        <li><strong>[Zero Allocation]</strong> 音響処理の遅延を極限まで抑え込み、原音の美しさを引き出す。</li>
+                        <li><strong>[Prism Presence]</strong> 突き抜ける高域の抜け感と、濁りのない圧倒的な透明度。</li>
+                        <li><strong>[Transient Peak]</strong> 弦を弾くアタック感を繊細に立たせ、音の輪郭をクリアに再現。</li>
                     </ul>
                 </div>
             </div> 
 
-        </div> 
+        </div>
+
         <div class="bottom-store-area">
             <a href="https://apps.apple.com/jp/app/oneclear-b/id6778664913" target="_blank" rel="noopener noreferrer" class="appstore-magic-btn">
                 <svg viewBox="0 0 170 170">
