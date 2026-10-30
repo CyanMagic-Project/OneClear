@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OneClear.C | Cyan Magic Project</title>
+    <meta name="description" content="OneClear.Cは、魔法使いルアンと共に出会うAndroid向け音声処理アプリ。ワンタップの魔法で、声や演奏をシアンマジックサウンドへと導きます。">
+    <title>OneClear.C | シアンマジックプロジェクト</title>
     <style>
         :root {
             --cyan-magic: #00B2B2; /* Android側のメインシアン */
@@ -42,6 +43,19 @@
             letter-spacing: 5px; pointer-events: none; user-select: none;
         }
 
+        /* トップバー・ナビゲーション */
+        .topbar {
+            display: flex; justify-content: space-between; align-items: center;
+            gap: 18px; padding: 18px 0; color: var(--text-muted); font-size: .86rem;
+            border-bottom: 1px solid rgba(0, 178, 178, 0.1);
+            background: #FFFFFF;
+            margin-bottom: 20px;
+        }
+        .brand { color: var(--cyan-magic); font-weight: 900; letter-spacing: .12em; }
+        .nav { display: flex; gap: 22px; flex-wrap: wrap; }
+        .nav a { text-decoration: none; color: var(--text-muted); transition: color 0.2s; font-weight: 600; }
+        .nav a:hover { color: var(--cyan-magic); }
+
         /* 誘導バナー */
         .ios-teaser {
             background: #FFFFFF; 
@@ -62,13 +76,37 @@
         /* メインキャッチ */
         .main-catch {
             font-size: 3.2rem; font-weight: 900; color: var(--text-color);
-            line-height: 1.3; margin: 90px 0; letter-spacing: -1px;
+            line-height: 1.3; margin: 70px 0 40px 0; letter-spacing: -1px;
             border-left: 8px solid var(--cyan-magic); padding-left: 25px;
         }
         .main-catch span { 
             color: var(--cyan-magic); display: block; margin-top: 12px; font-size: 3.5rem; 
         }
         .main-catch .sub-version { font-size: 1.1rem; font-weight: 700; color: var(--text-muted); letter-spacing: 3px; display: block; margin-bottom: 5px; }
+
+        /* ファーストビューの問いかけ */
+        .hero-question-box {
+            background: #FFFFFF;
+            border: 1px solid rgba(0, 178, 178, 0.25);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 60px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,178,178,0.04);
+        }
+        .hero-question-box h3 {
+            color: var(--cyan-magic);
+            font-size: 1.4rem;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-weight: 900;
+        }
+        .hero-question-box p {
+            color: #555;
+            font-size: 1rem;
+            margin: 0;
+            font-weight: 600;
+        }
 
         /* コンセプトカード */
         .concept-card {
@@ -78,26 +116,13 @@
         }
         .concept-card h2 { color: var(--text-color); font-size: 1.5rem; margin-top: 0; font-weight: 800; border-bottom: 1px solid #f0f0f0; padding-bottom: 15px; letter-spacing: 1px; }
         .concept-title { display: block; font-size: 1.6rem; font-weight: 900; color: var(--cyan-magic); line-height: 1.4; letter-spacing: 0.5px; }
-
-        /* Tipsセクションスタイル */
-        .tips-section {
-            background: #FFFFFF; padding: 45px 40px; border-radius: 12px;
-            margin-bottom: 80px; border: 1px solid rgba(0, 178, 178, 0.2);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.02);
-        }
-        .tips-section h2 { color: var(--text-color); font-size: 1.4rem; margin-top: 0; font-weight: 800; margin-bottom: 25px; display: flex; align-items: center; gap: 8px; }
-        .tips-list { list-style: none; padding: 0; margin: 0 0 25px 0; display: flex; flex-direction: column; gap: 20px; }
-        .tips-item-title { font-weight: 700; font-size: 1.05rem; color: var(--cyan-magic); margin-bottom: 4px; display: block; }
-        .tips-item-text { font-size: 0.92rem; color: #444444; margin: 0; line-height: 1.7; }
-        .tips-item-text strong { color: var(--cyan-magic); background: rgba(0, 178, 178, 0.05); padding: 1px 4px; border-radius: 3px; }
-        .tips-note { font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; margin: 0; border-top: 1px solid #f0f0f0; padding-top: 15px; }
-
+        
         /* 音響リードコピー */
         .audio-statement { text-align: center; margin: 100px 0; }
         .audio-statement .statement-main { font-size: 2.2rem; font-weight: 900; color: var(--cyan-magic); letter-spacing: 2px; display: block; margin-bottom: 15px; }
         .audio-statement .statement-sub { font-size: 1.1rem; color: #555555; font-weight: 500; display: block; }
 
-        /* ストーリーセクション (ルアン版) */
+        /* ストーリーセクション */
         .story-section {
             background: #FFFFFF; padding: 45px 40px;
             margin-bottom: 100px; border-radius: 12px;
@@ -129,7 +154,7 @@
         }
         .luan-technical-note p { font-size: 0.85rem; line-height: 1.6; color: #007a7a; margin: 0; font-style: italic; text-align: center; font-weight: 600; }
 
-        /* 🔮 プリセットグリッド & エフェクトの大幅アップデート */
+        /* プリセットグリッド */
         .preset-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 120px; }
         .preset-item { 
             background: #FFFFFF; padding: 40px; border-radius: 12px; 
@@ -137,10 +162,8 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.02);
             display: flex; flex-direction: column; justify-content: space-between;
             position: relative; overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* なめらかな浮き上がり */
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
-        
-        /* カードホバー時のサイバー発光エフェクト（各結晶固有カラー） */
         .preset-item:hover {
             transform: translateY(-5px);
             border-color: rgba(0, 178, 178, 0.4);
@@ -151,18 +174,15 @@
         .preset-name { font-size: 1.35rem; font-weight: 900; color: var(--color-core); display: block; line-height: 1.2; letter-spacing: 1px; }
         .kana-name { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); display: block; margin-top: 5px; letter-spacing: 1px; }
         
-        /* バッジスタイル */
         .badge { font-size: 0.65rem; padding: 3px 10px; border-radius: 4px; font-weight: 800; letter-spacing: 1px; display: inline-block; margin-top: 12px; margin-bottom: 15px; }
         .badge.core { background: rgba(0, 178, 178, 0.08); color: var(--color-core); border: 1px solid rgba(0, 178, 178, 0.3); }
         .badge.resonance { background: rgba(0, 255, 127, 0.06); color: var(--color-resonance); border: 1px solid rgba(0, 255, 127, 0.3); }
         .badge.aqua { background: rgba(0, 255, 255, 0.1); color: #009999; border: 1px solid rgba(0, 255, 255, 0.5); }
         .badge.prism-white { background: rgba(0, 0, 0, 0.05); color: #222222; border: 1px solid rgba(0, 0, 0, 0.15); }
 
-        /* キャッチコピー（見出し）共通定義 */
         .highlight-text { font-size: 1.1rem; font-weight: 700; color: var(--cyan-magic); display: block; margin: 0 0 12px 0; line-height: 1.4; }
         .preset-body p { font-size: 0.9rem; color: #444444; margin: 0 0 22px 0; line-height: 1.75; text-align: justify; }
         
-        /* ⚙️ 内部エンジニアリングタグ（バッジ化リファクタリング） */
         .pillar-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
         .pillar-list li { font-size: 0.85rem; color: #555555; line-height: 1.6; }
         .tech-tag {
@@ -175,10 +195,17 @@
             letter-spacing: 0.5px;
         }
         
-        /* アクア用のキャラタグ調整 */
-        .preset-item.aqua-item .character-tag { font-size: 0.78rem; font-weight: 700; color: #007a7a; display: block; margin-bottom: 16px; opacity: 0.85; }
+        /* 試聴ボタン */
+        .card-preview-btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            margin: 12px 0 18px 0; background: rgba(0,178,178,0.08); border: 1px solid rgba(0,178,178,0.3);
+            color: var(--cyan-magic); padding: 8px 16px; border-radius: 8px; font-size: 0.8rem; font-weight: 800;
+            cursor: pointer; transition: all 0.2s; text-align: center; width: fit-content;
+        }
+        .card-preview-btn:hover { background: rgba(0,178,178,0.2); color: #071116; }
+        .card-preview-btn.playing { background: var(--cyan-magic); color: #FFFFFF; border-color: var(--cyan-magic); }
 
-        /* プリセット固有トーンと個別ホバー */
+        .preset-item.aqua-item .character-tag { font-size: 0.78rem; font-weight: 700; color: #007a7a; display: block; margin-bottom: 16px; opacity: 0.85; }
         .preset-item .tech-tag { background: rgba(0, 178, 178, 0.08); color: var(--color-core); }
         
         .preset-item.resonance-item { border-color: rgba(0, 255, 127, 0.2); }
@@ -192,50 +219,29 @@
         .preset-item.aqua-item .preset-name { color: #009999; text-shadow: 0 0 10px rgba(0, 255, 255, 0.2); }
         .preset-item.aqua-item .tech-tag { background: rgba(0, 255, 255, 0.15); color: #007a7a; }
 
-        /* ✨ CRYSTAL CLEAR（PRISM WHITE）のプレミアムドレスアップ調整 */
         .preset-item.clear-item { 
             border-color: rgba(0, 178, 178, 0.25); 
-            /* 白を基調としつつ、四隅に極薄のシアンとピンクを配置してプリズムの透過光を表現 */
             background: linear-gradient(135deg, #FFFFFF 0%, #F5FAFA 40%, #FAEDF5 100%); 
         }
         .preset-item.clear-item:hover { 
             border-color: rgba(0, 178, 178, 0.45); 
-            /* 外側だけにほんのり浮かび上がる多色発光のオーラ */
             box-shadow: 
                 0 20px 40px rgba(0, 178, 178, 0.08),
                 0 0 25px rgba(230, 180, 210, 0.15);
             transform: translateY(-5px); 
         }
-        .preset-item.clear-item .preset-name { 
-            color: #0F1A1A; /* 漆黒から、僅かにシアンを帯びた洗練されたシアンブラックへ */
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.02); 
-        }
+        .preset-item.clear-item .preset-name { color: #0F1A1A; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.02); }
         .preset-item.clear-item .badge.prism-white { 
             margin-bottom: 24px; 
-            /* プラチナ感のあるニュアンスグラデーション */
             background: linear-gradient(90deg, #E6F2F2 0%, #F2E6F2 100%);
             color: #007A7A;
             border: 1px solid rgba(0, 178, 178, 0.25);
         }
-        .preset-item.clear-item .highlight-text { 
-            margin-top: 0 !important; 
-            margin-bottom: 12px; 
-            color: #0F1A1A; 
-        }
-        .preset-item.clear-item .preset-body p { 
-            margin-top: 15px; 
-            margin-bottom: 20px; 
-            color: #2F3B3B; /* 視認性を最高レベルにキープ */
-        }
+        .preset-item.clear-item .highlight-text { margin-top: 0 !important; margin-bottom: 12px; color: #0F1A1A; }
+        .preset-item.clear-item .preset-body p { margin-top: 15px; margin-bottom: 20px; color: #2F3B3B; }
         .preset-item.clear-item .pillar-list { margin-top: 0 !important; }
-        .preset-item.clear-item .tech-tag { 
-            /* 技術タグも背景に馴染む薄いシアンに微調整 */
-            background: rgba(0, 178, 178, 0.06); 
-            color: #007A7A; 
-            border: 1px solid rgba(0, 178, 178, 0.15);
-        }
+        .preset-item.clear-item .tech-tag { background: rgba(0, 178, 178, 0.06); color: #007A7A; border: 1px solid rgba(0, 178, 178, 0.15); }
 
-        /* ✨ プレミアムリボンのグラデーション・ドレスアップ */
         .premium-ribbon {
             position: absolute; top: 15px; right: -30px; 
             background: linear-gradient(90deg, #00B2B2, #00FF7F);
@@ -244,13 +250,26 @@
             box-shadow: 0 2px 8px rgba(0, 178, 178, 0.2);
         }
 
+        /* Tipsセクションスタイル */
+        .tips-section {
+            background: #FFFFFF; padding: 45px 40px; border-radius: 12px;
+            margin-bottom: 80px; border: 1px solid rgba(0, 178, 178, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.02);
+        }
+        .tips-section h2 { color: var(--text-color); font-size: 1.4rem; margin-top: 0; font-weight: 800; margin-bottom: 25px; display: flex; align-items: center; gap: 8px; }
+        .tips-list { list-style: none; padding: 0; margin: 0 0 25px 0; display: flex; flex-direction: column; gap: 20px; }
+        .tips-item-title { font-weight: 700; font-size: 1.05rem; color: var(--cyan-magic); margin-bottom: 4px; display: block; }
+        .tips-item-text { font-size: 0.92rem; color: #444444; margin: 0; line-height: 1.7; }
+        .tips-item-text strong { color: var(--cyan-magic); background: rgba(0, 178, 178, 0.05); padding: 1px 4px; border-radius: 3px; }
+        .tips-note { font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; margin: 0; border-top: 1px solid #f0f0f0; padding-top: 15px; }
+
         /* コンタクト */
         .contact-section { text-align: center; margin-bottom: 80px; padding-top: 60px; border-top: 1px solid #eef2f5; }
         .contact-section h2 { font-family: serif; color: var(--text-color); font-size: 2.2rem; letter-spacing: 2px; margin-top: 0; }
         .contact-link { color: var(--cyan-magic); font-size: 1.4rem; font-weight: 700; text-decoration: none; border-bottom: 1px solid var(--cyan-magic); padding-bottom: 3px; transition: opacity 0.2s; }
         .contact-link:hover { opacity: 0.8; }
 
-        /* 最下部のご利用上の注意セクション */
+        /* ご利用上の注意 */
         .attention-section {
             margin-bottom: 100px;
             padding-top: 40px;
@@ -297,8 +316,6 @@
             letter-spacing: 0.5px; 
             margin-bottom: 15px;
         }
-        
-        /* 🔗 フッターリンク統合・スマートリファクタリング */
         .footer-links { 
             margin: 18px 0; 
             display: flex; 
@@ -329,7 +346,8 @@
         /* レスポンシブ */
         @media (max-width: 768px) {
             .container { padding: 20px 15px; }
-            .main-catch { font-size: 2.2rem; margin: 60px 0; padding-left: 15px; }
+            .topbar { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .main-catch { font-size: 2.2rem; margin: 50px 0 40px 0; padding-left: 15px; }
             .main-catch span { font-size: 2.4rem; }
             .concept-card { padding: 30px; margin-bottom: 40px; }
             .concept-title { font-size: 1.25rem !important; }
@@ -355,75 +373,75 @@
 
     <div class="container">
         
+        <!-- トップバーナビゲーション -->
+        <div class="topbar">
+            <div class="brand">シアンマジックプロジェクト</div>
+            <nav class="nav" aria-label="メインナビゲーション">
+                <a href="#story">ルアンの物語</a>
+                <a href="#concept">シアンマジックとは</a>
+                <a href="#presets">クリスタルを選ぼう</a>
+                <a href="#howto">録音のコツ</a>
+                <a href="#contact">お問い合わせ</a>
+            </nav>
+        </div>
+
         <div class="ios-teaser">
             <div class="ios-teaser-text">iPhone / iOS端末をお使いですか？ <span>OneClear.B ページはこちら</span></div>
             <a href="index.html" class="ios-link-btn">iOS版を見る</a>
         </div>
         
+        <!-- 1. ファーストビュー：シアンマジックの世界へ -->
         <h1 class="main-catch">
-            <span class="sub-version">OneClear.C — Simplified Engine for Android</span>
-            ワンタップで音をクリアに<br>
-            <span>シアンマジックサウンド</span>
+            <span class="sub-version">OneClear.C — Android Edition</span>
+            あなたの声に<br>
+            <span>シアンマジック！</span>
         </h1>
 
-        <section class="concept-card">
-            <h2>One-Tap Optimization & シアンマジックサウンド</h2>
-            <div style="margin-bottom: 30px;">
-                <span class="concept-title">
-                    【シアンマジックサウンド】Crystalize your sound<br>ドライな密度感、クリスタルの輝き
-                </span>
-            </div>
-            <p>録音ボタンを押したあと、理想 of 響きを探すために何時間もミキシングプラグインを調整する必要はありません。OneClear.Cが提示するのは、一発撮りの緊張感さえも味方につけ、迷わず<strong>『ワンタップで音を磨き上げる』</strong>という極上の研磨体験です。</p>
-            <p>その磨き上げられた先に定着するのが、独自の調律思想である<strong>『シアンマジックサウンド』</strong>。不要な残響や濁りを排したソリッドな<strong>『ドライな密度感、クリスタルの輝き』</strong>をあなたの音に宿らせます。最先端のオーディオエンジンが、あなたの音に眠る純粋な輪郭だけを削り出し、耳元へダイレクトに届く存在感を掌の中に結晶化させます。</p>
-        </section>
-
-        <!-- Tipsセクション -->
-        <section class="tips-section">
-            <h2>💡 OneClearのポテンシャルを最大限に引き出すコツ</h2>
-            <p style="font-size: 0.95rem; color: #555555; margin: 0 0 25px 0;">『OneClear』の鮮やかな音声処理（シアンマジックサウンド）をより効果的に実感していただくための、おすすめの録音方法です。</p>
-            
-            <ul class="tips-list">
-                <li>
-                    <span class="tips-item-title">● マイクとの距離は適切に</span>
-                    <p class="tips-item-text">話者と内蔵マイクの距離が遠すぎると、音声処理の効果が感じにくくなることがあります。スマホを適切な位置に保って録音していただくのがベストです。</p>
-                </li>
-                <li>
-                    <span class="tips-item-title">● 静かな環境での録音がベース</span>
-                    <p class="tips-item-text">本アプリは高度な音声補正・加工を行いますが、極端な騒音や部屋の強い反響など、録音環境そのものを完全にゼロに補正するものではありません。できるだけ静かな空間で録音していただくと、驚くほどクリアな結果が得られます。</p>
-                </li>
-                <li>
-                    <span class="tips-item-title">● 身近な有線イヤホンを活用しよう（弾き語りにもおすすめ！）</span>
-                    <p class="tips-item-text">スマートフォン単体での録音はもちろん、<strong>お手持ちの有線イヤホンマイクを接続して録音するのもおすすめです。弾き語りの際にも歌声と楽器のバランスが綺麗に整いやすくなります</strong>ので、いつものスマホ環境でぜひお気軽に試してみてください。</p>
-                </li>
-            </ul>
-            
-            <p class="tips-note">※ご利用の機種やOSのバージョン、ハードウェアの仕様によって、動作や最終的な録音品質が異なる場合があります。</p>
-        </section>
-
-        <div class="audio-statement">
-            <span class="statement-main">あなたの声に、シアンマジック</span>
-            <span class="statement-sub">あなたの声はどの結晶で輝きますか？<br>磨き抜かれたソリッドな高密度サウンドが、ここから始まります。</span>
+        <div class="hero-question-box">
+            <h3>あなたの声はどのクリスタルで輝きますか？</h3>
+            <p>魔法使いルアンと共に、スマートフォンの録音に新しい魔法をかけよう。</p>
         </div>
 
-        <div class="story-section">
+        <!-- 3. ルアンの物語 -->
+        <section id="story" class="story-section">
             <div class="story-content">
-                <h2 class="story-title">The Sound Identity — Luan</h2>
+                <span style="font-size: 0.78rem; font-weight: 900; color: var(--cyan-magic); letter-spacing: 0.18em; display: inline-block; margin-bottom: 8px;">LUAN'S NARRATIVE</span>
+                <h2 class="story-title">OneClear.Cを導く魔法使い — ルアン</h2>
                 <p class="story-text">
-                    OneClear.Cの深淵に潜む音の守護者・ルアン<br>「シアンマジック」を操るもう一人の魔法使い。<br>
-                    不要な残響や音声の濁りをデトックス。録音されたままの原音が持つポテンシャルを極上のクリア空間へと引き上げます。
+                    OneClear.Cの世界を案内するのは、特別なクリスタルを操る魔法使い、ルアン。<br><br>
+                    ルアンが操る特別な魔法「CRYSTAL AQUA」をはじめ、それぞれ異なる個性を持つ4つのクリスタルが、あなたの録音に新しい響きをもたらします。
                 </p>
             </div>
             
             <div class="character-aside">
                 <img src="luan1.png" alt="Luan - Sound Identity" class="luan-visual">
                 <div class="luan-technical-note">
-                    <p>「ボクの魔法をひと振りすれば、<br>君の歌声はクリスタルのように…」</p>
+                    <p>「ボクの魔法をひと振りすれば、<br>君の歌声はクリスタルのように輝くよ！」</p>
                 </div>
             </div>
+        </section>
+
+        <!-- 2. シアンマジックとは -->
+        <section id="concept" class="concept-card">
+            <h2>What is Cyan Magic? — シアンマジックとは</h2>
+            <div style="margin-bottom: 30px;">
+                <span class="concept-title">
+                    ドライな密度感、クリスタルの輝き<br>【シアンマジックサウンド】
+                </span>
+            </div>
+            <p>録音した声や演奏を、もっと手軽に、自分らしい響きへ。</p>
+            <p>OneClear.Cは、スマートフォンで録音した音にワンタップで魔法をかける音声処理アプリです。</p>
+            <p>その根底にあるのが、シアンマジックプロジェクト共通の調律思想「シアンマジックサウンド」。不要な響きや濁りを抑え、原音の魅力を活かしながら、ドライな密度感、クリスタルの輝きを目指します。</p>
+            <p style="font-weight: 700; color: var(--cyan-magic); margin-top: 20px;">複雑な音づくりに悩む時間を、表現する時間へ。</p>
+        </section>
+
+        <!-- 4. & 5. クリスタルを選ぼう ＆ 魔法を体験する -->
+        <div class="audio-statement">
+            <span class="statement-main">魔法を体験する</span>
+            <span class="statement-sub">4つのクリスタルが生み出す音の違いを、実際の音声サンプルでご体験ください。</span>
         </div>
 
-        <!-- プリセットグリッド（ホバー発光＆技術タグ内蔵の最新版UI） -->
-        <div class="preset-grid">
+        <div id="presets" class="preset-grid">
             
             <div class="preset-item">
                 <div class="preset-header">
@@ -432,11 +450,14 @@
                     <span class="badge core">STANDARD ARCHITECTURE</span>
                 </div>
                 <div class="preset-body">
-                    <span class="highlight-text">純粋な芯を保つ<br>すべての響きの原点</span>
-                    <p>OneClearシリーズの根幹を成す基本アルゴリズム。音全体の輪郭をカチッと引き締め、多様なレコーディング環境において、歪みのない真っ整ぐでクリーンな芯をサウンドへと定着させます。</p>
-                    <ul class="pillar-list">
-                        <li><span class="tech-tag">[Dry Base]</span>濁った低音の膨らみをスマートに抑制し、声の明瞭度を自然に向上。</li>
-                        <li><span class="tech-tag">[Filter Process]</span>歪みを抑え、原音に忠実なデトックス処理。</li>
+                    <span class="highlight-text">【基本】自然でクリアなサウンド</span>
+                    <p>低音のこもりや不要な雑味を抑え、声や楽器の芯をすっきりと際立たせるベースサウンド。ドライで引き締まった質感と、原音の素直な輪郭を大切にします。</p>
+                    
+                    <button class="card-preview-btn" data-src="audio/android_core.mp3">▶ 試聴する (CORE)</button>
+
+                    <ul class="pillar-list" style="margin-top: 10px;">
+                        <li><span class="tech-tag">[Dry Base]</span>濁った低音の膨らみをスマートに抑制。</li>
+                        <li><span class="tech-tag">[Natural Contour]</span>原音に忠実な素直な輪郭。</li>
                     </ul>
                 </div>
             </div>
@@ -448,11 +469,14 @@
                     <span class="badge resonance">HIGH RESOLUTION</span>
                 </div>
                 <div class="preset-body">
-                    <span class="highlight-text">中高音の際立ち<br>輝くような解像感</span>
-                    <p>高音域に繊細で上品な共鳴（レゾナンス）をもたらす高域特化システム。籠もり気味の音声であっても、タップ一つで空気感を明るく変え、オケに埋もれない伸びやかな存在感を与えます。</p>
-                    <ul class="pillar-list">
-                        <li><span class="tech-tag">[Overtone Process]</span>不快なトゲを残さず、中高音の解像度とヌケの良さだけをピン留め。</li>
-                        <li><span class="tech-tag">[Acoustic Tail]</span>特有の煌びやかな高域補正をインテリジェントに付与。</li>
+                    <span class="highlight-text">【煌めき】中高音が伸びやかに響く</span>
+                    <p>中高音の輝きと、アコースティック楽器の心地よい響きを引き出すサウンド。歌声と演奏の存在感を保ちながら、弾き語りに似合う伸びやかな印象へ整えます。</p>
+                    
+                    <button class="card-preview-btn" data-src="audio/android_resonance.mp3">▶ 試聴する (RESONANCE)</button>
+
+                    <ul class="pillar-list" style="margin-top: 10px;">
+                        <li><span class="tech-tag">[Overtone]</span>中高音の解像度とヌケの良さを向上。</li>
+                        <li><span class="tech-tag">[Acoustic Shimmer]</span>弾き語りにも最適な伸びやかな響き。</li>
                     </ul>
                 </div>
             </div>
@@ -465,12 +489,15 @@
                     <span class="badge aqua">ANDROID ONLY / LUAN'S MAGIC</span>
                 </div>
                 <div class="preset-body">
-                    <span class="highlight-text">至高の透明感<br>みずみずしい潤いと残響を纏う</span>
+                    <span class="highlight-text">【透明感】みずみずしい潤いと残響</span>
                     <span class="character-tag">【Android限定】ルアン専用魔法</span>
-                    <p>至高の透明感をもたらす、Android限定のプレミアムプロファイル。ルアン特製の術式が、乾いた音をシアンの雫で満たし、澄んだ広がりを付与。包み込むような優しさと、芯の通った確かな存在感を両立させます。</p>
-                    <ul class="pillar-list">
-                        <li><span class="tech-tag">[Aqueous Echo]</span>不快な籠もりを一切排除し、澄み渡る水面のような美しい残響を生成。</li>
-                        <li><span class="tech-tag">[Luan's Tuning]</span>多彩なAndroidデバイスで一貫して高品質な音響補正が走る高効率設計。</li>
+                    <p>ルアンだけが操る、特別なプレミアムクリスタル。独自の魔法によって、乾いた音にみずみずしい響きと心地よい広がりを与えます。水面に光が広がるような、AQUAならではの音の世界をお楽しみください。</p>
+                    
+                    <button class="card-preview-btn" data-src="audio/android_aqua.mp3">▶ 試聴する (AQUA)</button>
+
+                    <ul class="pillar-list" style="margin-top: 10px;">
+                        <li><span class="tech-tag">[Aqueous Echo]</span>水面のように美しく広がる残響。</li>
+                        <li><span class="tech-tag">[Luan's Special]</span>ルアンの魔法が織りなす特別な響き。</li>
                     </ul>
                 </div>
             </div>
@@ -483,20 +510,44 @@
                     <span class="badge prism-white">PRISM WHITE EDITION</span>
                 </div>
                 <div class="preset-body">
-                    <span class="highlight-text">極限の解像度<br>淀みのない上品な密度感</span>
-                    <p>シアンマジック™のポテンシャルを最大限に引き出した極上のプロファイル。無駄な誇張を一切排除し、原音が持つクオリティを余すことなく引き上げます。シルキーで、どこまでもクリアで緻密な音響空間へと導く究極の構成です。</p>
-                    <ul class="pillar-list">
-                        <li><span class="tech-tag">[Deterministic]</span>どこまでも安定した圧倒的な透明度へ。</li>
-                        <li><span class="tech-tag">[Zero Allocation]</span>音響処理の遅延を極限まで抑え込み、原音の美しさを100%引き出す。</li>
+                    <span class="highlight-text">【透明感】声の輪郭が際立つ上品な密度感</span>
+                    <p>声の輪郭と存在感を前に引き出し、透明感のある仕上がりを目指すプリセット。クリアさと密度感のバランスを大切にした象徴的な構成です。</p>
+                    
+                    <button class="card-preview-btn" data-src="audio/android_clear.mp3">▶ 試聴する (CLEAR)</button>
+
+                    <ul class="pillar-list" style="margin-top: 10px;">
+                        <li><span class="tech-tag">[Prism Clarity]</span>上品な透明感と安定した密度感。</li>
+                        <li><span class="tech-tag">[Vocal Focus]</span>原音の美しさと輪郭を引き出す。</li>
                     </ul>
                 </div>
             </div> 
 
         </div> 
 
-        <section class="contact-section">
+        <!-- 6. OneClear.Cの使い方・録音のヒント -->
+        <section id="howto" class="tips-section">
+            <h2>💡 OneClear.Cの使い方と録音のヒント</h2>
+            <p style="font-size: 0.95rem; color: #555555; margin: 0 0 25px 0;">シアンマジックサウンドの効果をより自然に、楽しく実感していただくためのヒントです。</p>
+            
+            <ul class="tips-list">
+                <li>
+                    <span class="tips-item-title">● 01 — マイクとの適切な距離</span>
+                    <p class="tips-item-text">話者や楽器と内蔵マイクの距離が近すぎたり遠すぎたりしないよう、適切な距離を保つと自然な録音につながります。</p>
+                </li>
+                <li>
+                    <span class="tips-item-title">● 02 — できるだけ静かな環境で</span>
+                    <p class="tips-item-text">周囲の騒音や部屋の強い反響が少ない空間で録音していただくと、シアンマジックの魔法がより美しくかかります。</p>
+                </li>
+                <li>
+                    <span class="tips-item-title">● 03 — 有線イヤホンマイクも選択肢に</span>
+                    <p class="tips-item-text">お手持ちの有線イヤホンマイクなどを接続して録音するのもおすすめです。弾き語りなどでも声と楽器が綺麗にまとまります。</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="contact" class="contact-section">
             <h2>Contact</h2>
-            <p>OneClear.Cへのご質問、またはシアンマジックへのメッセージはこちらまで。</p>
+            <p>OneClear.Cへのご質問、シアンマジックプロジェクトへのメッセージはこちら。</p>
             <a href="mailto:cyanmagic.support@gmail.com" class="contact-link">cyanmagic.support@gmail.com</a>
         </section>
 
@@ -505,23 +556,87 @@
             <div class="attention-box">
                 <h3>【重要】ご利用上の注意</h3>
                 <ul>
-                    <li>本アプリは高精度なリアルタイム音響解析およびオーディオ演算を常に実行するため、連続してご使用になる場合はスマートフォンの発熱、およびバッテリー消費が早くなることがあります。端末が著しく熱を持った場合は、一度アプリを終了し本体を休ませてください。</li>
-                    <li>読み込む音声データの解析時間が長い場合、エフェクト処理の完了までにお時間をいただくことがあります。処理中はアプリを閉じずにそのままお待ちください。</li>
+                    <li>音声データの長さや端末の性能によって、処理に時間がかかる場合があります。処理が完了するまで、そのままお待ちください。</li>
+                    <li>長時間の連続使用では、端末が発熱したりバッテリーの消費が早くなったりする場合があります。</li>
+                    <li>録音環境や使用するマイクによって、仕上がりの音は異なります。できるだけ静かな環境での録音をおすすめします。</li>
                 </ul>
             </div>
         </section>
 
+        <!-- 7. ダウンロード・フッター -->
         <footer>
             <img src="cyan_magic_logo.png" alt="Cyan Magic Project" class="footer-logo">
             <div class="footer-copy">&copy; 2026 Cyan Magic Project</div>
             
-            <!-- ✨ 法的審査を1発クリアするスマートなフッターリンク -->
             <div class="footer-links">
-                <a href="privacy_c.html"> 利用規約/プライバシーポリシー</a>
+                <a href="privacy_c.html">利用規約 / プライバシーポリシー</a>
             </div>
             
             <div class="footer-brand">Product: OneClear.C (Android) | Master of Sound : ᚣᛟᛋᚻIᚳᚫᚹᚫ</div>
         </footer>
     </div>
+
+    <!-- オーディオプレイヤー制御 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let currentAudio = null;
+            let activeBtn = null;
+            const buttons = document.querySelectorAll('.card-preview-btn');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const src = button.getAttribute('data-src');
+                    if (!src) return;
+
+                    if (currentAudio && currentAudio.src.endsWith(src)) {
+                        if (currentAudio.paused) {
+                            currentAudio.play();
+                            button.textContent = '⏸ 停止する';
+                            button.classList.add('playing');
+                        } else {
+                            currentAudio.pause();
+                            button.textContent = '▶ 試聴する (' + getPresetName(src) + ')';
+                            button.classList.remove('playing');
+                        }
+                        return;
+                    }
+
+                    if (currentAudio) {
+                        currentAudio.pause();
+                        if (activeBtn) {
+                            activeBtn.textContent = '▶ 試聴する (' + getPresetName(activeBtn.getAttribute('data-src')) + ')';
+                            activeBtn.classList.remove('playing');
+                        }
+                    }
+
+                    currentAudio = new Audio(src);
+                    activeBtn = button;
+
+                    currentAudio.play().then(() => {
+                        button.textContent = '⏸ 停止する';
+                        button.classList.add('playing');
+                    }).catch(e => {
+                        console.log('Playback error:', e);
+                        alert('音声ファイルの読み込みに失敗しました。ファイル名と配置をご確認ください。');
+                    });
+
+                    currentAudio.addEventListener('ended', () => {
+                        button.textContent = '▶ 試聴する (' + getPresetName(src) + ')';
+                        button.classList.remove('playing');
+                        currentAudio = null;
+                        activeBtn = null;
+                    });
+                });
+            });
+
+            function getPresetName(path) {
+                if (path.includes('core')) return 'CORE';
+                if (path.includes('resonance')) return 'RESONANCE';
+                if (path.includes('aqua')) return 'AQUA';
+                if (path.includes('clear')) return 'CLEAR';
+                return '';
+            }
+        });
+    </script>
 </body>
 </html>
